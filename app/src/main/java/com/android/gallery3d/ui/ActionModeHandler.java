@@ -16,20 +16,6 @@
 
 package com.android.gallery3d.ui;
 
-import com.chanapps.four.gallery3d.R;
-import com.android.gallery3d.app.GalleryActionBar;
-import com.android.gallery3d.app.GalleryActivity;
-import com.android.gallery3d.common.Utils;
-import com.android.gallery3d.data.DataManager;
-import com.android.gallery3d.data.MediaObject;
-import com.android.gallery3d.data.Path;
-import com.android.gallery3d.ui.CustomMenu.DropDownMenu;
-import com.android.gallery3d.ui.MenuExecutor.ProgressListener;
-import com.android.gallery3d.util.Future;
-import com.android.gallery3d.util.GalleryUtils;
-import com.android.gallery3d.util.ThreadPool.Job;
-import com.android.gallery3d.util.ThreadPool.JobContext;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -43,21 +29,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.ShareActionProvider.OnShareTargetSelectedListener;
 import android.widget.ShareActionProvider;
+import android.widget.ShareActionProvider.OnShareTargetSelectedListener;
+
+import com.android.gallery3d.app.GalleryActionBar;
+import com.android.gallery3d.app.GalleryActivity;
+import com.android.gallery3d.common.Utils;
+import com.android.gallery3d.data.DataManager;
+import com.android.gallery3d.data.MediaObject;
+import com.android.gallery3d.data.Path;
+import com.android.gallery3d.ui.CustomMenu.DropDownMenu;
+import com.android.gallery3d.ui.MenuExecutor.ProgressListener;
+import com.android.gallery3d.util.Future;
+import com.android.gallery3d.util.GalleryUtils;
+import com.android.gallery3d.util.ThreadPool.Job;
+import com.android.gallery3d.util.ThreadPool.JobContext;
+import com.chanapps.four.gallery3d.R;
 
 import java.util.ArrayList;
 
 public class ActionModeHandler implements ActionMode.Callback {
     private static final String TAG = "ActionModeHandler";
-    private static final int SUPPORT_MULTIPLE_MASK = MediaObject.SUPPORT_DELETE
-            | MediaObject.SUPPORT_ROTATE | MediaObject.SUPPORT_SHARE
-            | MediaObject.SUPPORT_CACHE | MediaObject.SUPPORT_IMPORT;
-
-    public interface ActionModeListener {
-        public boolean onActionItemClicked(MenuItem item);
-    }
-
+    private static final int SUPPORT_MULTIPLE_MASK = MediaObject.SUPPORT_DELETE | MediaObject.SUPPORT_ROTATE | MediaObject.SUPPORT_SHARE | MediaObject.SUPPORT_CACHE | MediaObject.SUPPORT_IMPORT;
     private final GalleryActivity mActivity;
     private final MenuExecutor mMenuExecutor;
     private final SelectionManager mSelectionManager;
@@ -68,8 +61,7 @@ public class ActionModeHandler implements ActionMode.Callback {
     private Handler mMainHandler;
     private ShareActionProvider mShareActionProvider;
 
-    public ActionModeHandler(
-            GalleryActivity activity, SelectionManager selectionManager) {
+    public ActionModeHandler(GalleryActivity activity, SelectionManager selectionManager) {
         mActivity = Utils.checkNotNull(activity);
         mSelectionManager = Utils.checkNotNull(selectionManager);
         mMenuExecutor = new MenuExecutor(activity, selectionManager);
@@ -80,12 +72,9 @@ public class ActionModeHandler implements ActionMode.Callback {
         Activity a = (Activity) mActivity;
         final ActionMode actionMode = a.startActionMode(this);
         CustomMenu customMenu = new CustomMenu(a);
-        View customView = LayoutInflater.from(a).inflate(
-                R.layout.action_mode, null);
+        View customView = LayoutInflater.from(a).inflate(R.layout.action_mode, null);
         actionMode.setCustomView(customView);
-        mSelectionMenu = customMenu.addDropDownMenu(
-                (Button) customView.findViewById(R.id.selection_menu),
-                R.menu.selection);
+        mSelectionMenu = customMenu.addDropDownMenu((Button) customView.findViewById(R.id.selection_menu), R.menu.selection);
         updateSelectionMenu();
         customMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
@@ -113,9 +102,9 @@ public class ActionModeHandler implements ActionMode.Callback {
             }
         }
         ProgressListener listener = null;
-        if (item.getItemId() == R.id.action_import) {
-            listener = new ImportCompleteListener(mActivity);
-        }
+//        if (item.getItemId() == R.id.action_import) {
+//            listener = new ImportCompleteListener(mActivity);
+//        }
         result = mMenuExecutor.onMenuClicked(item, listener);
         if (item.getItemId() == R.id.action_select_all) {
             updateSupportedOperation();
@@ -127,8 +116,7 @@ public class ActionModeHandler implements ActionMode.Callback {
     private void updateSelectionMenu() {
         // update title
         int count = mSelectionManager.getSelectedCount();
-        String format = mActivity.getResources().getQuantityString(
-                R.plurals.number_of_items_selected, count);
+        String format = mActivity.getResources().getQuantityString(R.plurals.number_of_items_selected, count);
         setTitle(String.format(format, count));
         // For clients who call SelectionManager.selectAll() directly, we need to ensure the
         // menu status is consistent with selection manager.
@@ -287,5 +275,9 @@ public class ActionModeHandler implements ActionMode.Callback {
 
     public void resume() {
         updateSupportedOperation();
+    }
+
+    public interface ActionModeListener {
+        boolean onActionItemClicked(MenuItem item);
     }
 }
