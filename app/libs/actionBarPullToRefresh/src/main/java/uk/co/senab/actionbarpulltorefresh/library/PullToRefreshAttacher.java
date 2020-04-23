@@ -38,6 +38,8 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 /**
  * FIXME
  */
@@ -79,7 +81,7 @@ public class PullToRefreshAttacher implements View.OnTouchListener {
      *
      * @param activity
      */
-    public PullToRefreshAttacher(Activity activity) {
+    public PullToRefreshAttacher(AppCompatActivity activity) {
         this(activity, new Options());
     }
 
@@ -89,7 +91,7 @@ public class PullToRefreshAttacher implements View.OnTouchListener {
      * @param activity
      * @param options
      */
-    public PullToRefreshAttacher(Activity activity, Options options) {
+    public PullToRefreshAttacher(AppCompatActivity activity, Options options) {
         if (options == null) {
             Log.i(LOG_TAG, "Given null options so using default options.");
             options = new Options();
@@ -534,9 +536,9 @@ public class PullToRefreshAttacher implements View.OnTouchListener {
         /**
          * @return Context which should be used for inflating the header layout
          */
-        public Context getContextForInflater(Activity activity) {
+        public Context getContextForInflater(AppCompatActivity activity) {
             if (Build.VERSION.SDK_INT >= 14) {
-                return activity.getActionBar().getThemedContext();
+                return activity.getSupportActionBar().getThemedContext();
             } else {
                 return activity;
             }

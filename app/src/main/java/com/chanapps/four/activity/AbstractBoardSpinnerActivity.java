@@ -1,6 +1,6 @@
 package com.chanapps.four.activity;
 
-import android.app.ActionBar;
+//import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import com.chanapps.four.component.SendFeedback;
@@ -21,7 +23,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-abstract public class AbstractBoardSpinnerActivity extends FragmentActivity implements ChanIdentifiedActivity, ThemeSelector.ThemeActivity {
+abstract public class AbstractBoardSpinnerActivity extends AppCompatActivity implements ChanIdentifiedActivity, ThemeSelector.ThemeActivity {
     protected static final String TAG = AbstractBoardSpinnerActivity.class.getSimpleName();
     protected static final boolean DEBUG = false;
     protected static final boolean DEVELOPER_MODE = false;
@@ -114,7 +116,7 @@ abstract public class AbstractBoardSpinnerActivity extends FragmentActivity impl
     }
 
     protected void createActionBar() {
-        actionBar = getActionBar();
+        actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         if (DEBUG) Log.i(TAG, "createActionBar()");

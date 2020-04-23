@@ -33,6 +33,8 @@ import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.view.ActionProvider;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.legacy.app.ActionBarDrawerToggle;
 import androidx.loader.app.LoaderManager;
@@ -74,6 +76,7 @@ import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -115,6 +118,8 @@ public class ThreadFragment extends Fragment implements ThreadViewable {
     protected long postNo; // for direct jumps from latest post / recent images
     protected String imageUrl;
     protected boolean shouldPlayThread = false;
+    protected ActionProvider shareActionProviderOP = null;
+    //protected ShareActionProvider shareActionProvider = null;
     protected Map<String, Uri> checkedImageUris = new HashMap<String, Uri>(); // used for tracking what's in the media store
     protected ActionMode actionMode = null;
     protected PullToRefreshAttacher mPullToRefreshAttacher;
@@ -1039,6 +1044,15 @@ public class ThreadFragment extends Fragment implements ThreadViewable {
         }).start();
     }
 
+    protected void setupShareActionProviderOPMenu(final Menu menu) {
+        updateSharedIntentOP(shareActionProviderOP);
+        if (menu == null) return;
+        MenuItem shareItem = menu.findItem(R.id.thread_share_menu);
+        shareActionProviderOP = shareItem == null ? null : MenuItemCompat.getActionProvider(shareItem);
+        if (DEBUG)
+            Log.i(TAG, "setupShareActionProviderOP() shareActionProviderOP=" + shareActionProviderOP);
+    }
+
     protected boolean undead() {
         ChanThread thread = ChanFileStorage.loadThreadData(getActivity(), boardCode, threadNo);
         return !(thread != null && thread.isDead);
@@ -1354,7 +1368,7 @@ public class ThreadFragment extends Fragment implements ThreadViewable {
         return handler != null;
     }
 
-    private void setShareIntent(final ShareActionProvider provider, final Intent intent) {
+    private void setShareIntent(final ShareActionProvider  provider, final Intent intent) {
         if (ActivityDispatcher.onUIThread()) synchronized (this) {
             if (provider != null && intent != null) provider.setShareIntent(intent);
         }
@@ -1366,6 +1380,24 @@ public class ThreadFragment extends Fragment implements ThreadViewable {
                 }
             }
         });
+    }
+
+    protected void updateSharedIntentOP(ActionProvider provider) {
+        String url = ChanThread.threadUrl(getActivityContext(), boardCode, threadNo);
+        Intent intent;
+        intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, url);
+        intent.setType("text/plain");
+//        setShareIntent(provider, intent);
+    }
+
+    protected void asyncUpdateSharedIntent(ArrayList<String> pathList) {
+        String[] paths = new String[pathList.size()];
+        String[] types = new String[pathList.size()];
+        for (int i = 0; i < pathList.size(); i++) {
+            paths[i] = pathList.get(i);
+            types[i] = "image/jpeg";
+        }
     }
 
     public void onRefresh() {

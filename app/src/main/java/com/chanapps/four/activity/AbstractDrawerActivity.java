@@ -303,8 +303,8 @@ abstract public class AbstractDrawerActivity extends AbstractBoardSpinnerActivit
         mDrawerList.setOnItemClickListener(drawerClickListener);
         setDrawerAdapter();
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */

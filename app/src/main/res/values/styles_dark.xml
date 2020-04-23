@@ -18,15 +18,15 @@
 
 <resources>
 
-    <style name="Theme.Dark" parent="@android:style/Theme.Holo">
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Dark</item>
+    <style name="Theme.Dark" parent="Theme.AppCompat.DayNight.DarkActionBar">
+<!--        <item name="android:actionBarStyle">@style/ActionBar.Solid.Dark</item>-->
 
     </style>
 
-    <style name="ActionBar.Solid.Dark" parent="@android:style/Widget.Holo.ActionBar.Solid">
-        <item name="android:background">@color/DarkPaletteActionBarBg</item>
+<!--    <style name="ActionBar.Solid.Dark" parent="@android:style/Widget.Holo.ActionBar.Solid">-->
+<!--        <item name="android:background">@color/DarkPaletteActionBarBg</item>-->
 
-    </style>
+<!--    </style>-->
 
 
 </resources>
