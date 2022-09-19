@@ -14,11 +14,11 @@ import com.chanapps.four.service.BoardParserService;
 import com.chanapps.four.service.FileSaverService;
 import com.chanapps.four.service.FileSaverService.FileType;
 import com.chanapps.four.widget.WidgetProviderUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nostra13.universalimageloader.utils.L;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.apache.commons.io.IOUtils;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

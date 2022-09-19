@@ -13,15 +13,16 @@ import com.chanapps.four.data.ChanBoard;
 import com.chanapps.four.data.ChanFileStorage;
 import com.chanapps.four.data.ChanPost;
 import com.chanapps.four.data.ChanThread;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MappingJsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.MappingJsonFactory;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.BufferedReader;
+import java.io.DataInput;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -117,7 +118,7 @@ public class BoardThreadsParserService extends BaseChanService implements ChanId
             boolean first = true;
             for (JsonNode postValue : threadValue.path("posts")) { // first object is the thread post
                 try {
-                    ChanPost post = mapper.readValue(postValue, ChanPost.class);
+                    ChanPost post = mapper.treeToValue( postValue, ChanPost.class);
                     if (post != null) {
                         if (post.board == null || post.board.isEmpty()) post.board = boardCode;
                         if (first) {
@@ -165,7 +166,7 @@ public class BoardThreadsParserService extends BaseChanService implements ChanId
                 JsonNode pageNode = jp.readValueAsTree();
                 for (JsonNode threadValue : pageNode.path("threads")) { // iterate over threads
                     try {
-                        ChanPost post = mapper.readValue(threadValue, ChanPost.class);
+                        ChanPost post = mapper.treeToValue( threadValue, ChanPost.class);
                         if (post != null) {
                             if (post.board == null || post.board.isEmpty()) post.board = boardCode;
                             ChanThread thread = ChanFileStorage.loadThreadData(getBaseContext(), post.board, post.no);

@@ -1,11 +1,16 @@
 package com.chanapps.four.data;
 
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.deser.StdDeserializer;
+
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
+import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 
 import java.io.IOException;
 import java.util.Date;
@@ -31,7 +36,7 @@ public class JacksonNonBlockingObjectMapperFactory {
         private JsonDeserializer<?> delegate;
 
         public NonBlockingIntegerDeserializer() {
-            this.delegate = new StdDeserializer.IntegerDeserializer(Integer.class, 0);
+            this.delegate = new NumberDeserializers.IntegerDeserializer(Integer.class, 0);
         }
 
         @Override
@@ -57,7 +62,7 @@ public class JacksonNonBlockingObjectMapperFactory {
         private JsonDeserializer<?> delegate;
 
         public NonBlockingLongDeserializer() {
-            this.delegate = new StdDeserializer.LongDeserializer(Long.class, 0L);
+            this.delegate = new NumberDeserializers.LongDeserializer(Long.class, 0L);
         }
 
         @Override
@@ -76,7 +81,7 @@ public class JacksonNonBlockingObjectMapperFactory {
         private JsonDeserializer<?> delegate;
 
         public NonBlockingBooleanDeserializer() {
-            this.delegate = new StdDeserializer.BooleanDeserializer(Boolean.class, false);
+            this.delegate = new NumberDeserializers.BooleanDeserializer(Boolean.class, false);
         }
 
         @Override
@@ -95,7 +100,7 @@ public class JacksonNonBlockingObjectMapperFactory {
         private JsonDeserializer<?> delegate;
 
         public NonBlockingStringDeserializer() {
-            this.delegate = new StdDeserializer.StringDeserializer();
+            this.delegate = new StringDeserializer();
         }
 
         @Override
@@ -114,7 +119,7 @@ public class JacksonNonBlockingObjectMapperFactory {
         private JsonDeserializer<?> delegate;
 
         public NonBlockingDateDeserializer() {
-            this.delegate = new StdDeserializer.CalendarDeserializer();
+            this.delegate = new DateDeserializers.CalendarDeserializer();
         }
 
         @Override

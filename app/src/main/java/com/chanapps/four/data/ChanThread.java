@@ -7,10 +7,10 @@ import android.util.Log;
 import com.chanapps.four.activity.R;
 import com.chanapps.four.component.URLFormatComponent;
 import com.chanapps.four.service.NetworkProfileManager;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

@@ -14,10 +14,10 @@ import com.chanapps.four.data.ChanFileStorage;
 import com.chanapps.four.data.ChanPost;
 import com.chanapps.four.data.ChanThread;
 import com.chanapps.four.service.profile.NetworkProfile.Failure;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
-
+import java.io.DataInput;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -144,7 +144,7 @@ public class ThreadParserService extends BaseChanService implements ChanIdentifi
         JsonNode rootNode = mapper.readValue(in, JsonNode.class);
 
         for (JsonNode postValue : rootNode.path("posts")) { // first object is the thread post
-            ChanPost post = mapper.readValue(postValue, ChanPost.class);
+            ChanPost post = mapper.treeToValue( postValue, ChanPost.class);
             if (post != null) {
                 post.board = boardCode;
                 posts.add(post);

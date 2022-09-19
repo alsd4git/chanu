@@ -8,9 +8,9 @@ import android.util.Log;
 
 import com.chanapps.four.activity.R;
 import com.chanapps.four.component.URLFormatComponent;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

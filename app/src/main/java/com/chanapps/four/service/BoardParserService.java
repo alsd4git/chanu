@@ -17,17 +17,18 @@ import com.chanapps.four.data.ChanFileStorage;
 import com.chanapps.four.data.ChanPost;
 import com.chanapps.four.data.ChanThread;
 import com.chanapps.four.service.profile.NetworkProfile.Failure;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MappingJsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.commons.io.FileUtils;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.JsonToken;
-import org.codehaus.jackson.map.DeserializationConfig;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.MappingJsonFactory;
-import org.codehaus.jackson.map.ObjectMapper;
 
+import java.io.DataInput;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -50,7 +51,7 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     static {
-        MAPPER.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         MAPPER.setDateFormat(new SimpleDateFormat("MMM d, yyyy h:mm:ss aaa")); // "Jan 15, 2013 10:16:20 AM"
     }
 
@@ -194,7 +195,7 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
         for (JsonNode threadValue : rootNode.path("threads")) { // iterate over threads
             JsonNode postValue = threadValue.path("posts").get(0); // first object is the thread post
             try {
-                ChanPost post = mapper.readValue(postValue, ChanPost.class);
+                ChanPost post = mapper.treeToValue( postValue, ChanPost.class);
                 if (post != null) {
                     post.board = boardCode;
                     post.mergeIntoThreadList(threads);
@@ -228,7 +229,7 @@ public class BoardParserService extends BaseChanService implements ChanIdentifie
                 JsonNode pageNode = jp.readValueAsTree();
                 for (JsonNode threadValue : pageNode.path("threads")) { // iterate over threads
                     try {
-                        ChanThread thread = mapper.readValue(threadValue, ChanThread.class);
+                        ChanThread thread = mapper.treeToValue( threadValue, ChanThread.class);
                         if (DEBUG)
                             Log.i(TAG, "thread sub=" + thread.sub + " thumb=" + thread.tn_w + "x" + thread.tn_h + " full=" + thread.w + "x" + thread.h + " com=" + thread.com);
                         if (thread != null) {
