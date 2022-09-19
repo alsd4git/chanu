@@ -69,26 +69,19 @@ public class CropView extends GLView {
     private static final int ANIMATION_TRIGGER = 64;
 
     private static final int MSG_UPDATE_FACES = 1;
-
-    private float mAspectRatio = UNSPECIFIED;
-    private float mSpotlightRatioX = 0;
-    private float mSpotlightRatioY = 0;
-
     private final Handler mMainHandler;
-
     private final FaceHighlightView mFaceDetectionView;
     private final HighlightRectangle mHighlightRectangle;
     private final TileImageView mImageView;
     private final AnimationController mAnimation = new AnimationController();
-
-    private int mImageWidth = SIZE_UNKNOWN;
-    private int mImageHeight = SIZE_UNKNOWN;
-
     private final GalleryActivity mActivity;
-
     private final GLPaint mPaint = new GLPaint();
     private final GLPaint mFacePaint = new GLPaint();
-
+    private float mAspectRatio = UNSPECIFIED;
+    private float mSpotlightRatioX = 0;
+    private float mSpotlightRatioY = 0;
+    private int mImageWidth = SIZE_UNKNOWN;
+    private int mImageHeight = SIZE_UNKNOWN;
     private int mImageRotation;
 
     public CropView(GalleryActivity activity) {

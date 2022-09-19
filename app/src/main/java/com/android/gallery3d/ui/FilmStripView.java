@@ -44,9 +44,9 @@ public class FilmStripView extends GLView implements ScrollBarView.Listener, Use
     private final ScrollBarView mScrollBarView;
     private final AlbumDataAdapter mAlbumDataAdapter;
     private final StripDrawer mStripDrawer;
+    private final NinePatchTexture mBackgroundTexture;
     private Listener mListener;
     private UserInteractionListener mUIListener;
-    private final NinePatchTexture mBackgroundTexture;
 
     // The layout of FileStripView is
     // topMargin

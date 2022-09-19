@@ -46,6 +46,7 @@ public class EyePosition {
     private final Context mContext;
     private final EyePositionListener mListener;
     private final Display mDisplay;
+    private final PositionListener mPositionListener = new PositionListener();
     // The eyes' position of the user, the origin is at the center of the
     // device and the unit is in pixels.
     private float mX;
@@ -53,7 +54,6 @@ public class EyePosition {
     private float mZ;
     private long mStartTime = NOT_STARTED;
     private Sensor mSensor;
-    private final PositionListener mPositionListener = new PositionListener();
     private int mGyroscopeCountdown = 0;
 
     public EyePosition(Context context, EyePositionListener listener) {

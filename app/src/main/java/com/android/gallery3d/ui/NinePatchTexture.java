@@ -40,8 +40,8 @@ import javax.microedition.khronos.opengles.GL11;
 public class NinePatchTexture extends ResourceTexture {
     @SuppressWarnings("unused")
     private static final String TAG = "NinePatchTexture";
-    private NinePatchChunk mChunk;
     private final MyCacheMap<Long, NinePatchInstance> mInstanceCache = new MyCacheMap<Long, NinePatchInstance>();
+    private NinePatchChunk mChunk;
 
     public NinePatchTexture(Context context, int resId) {
         super(context, resId);

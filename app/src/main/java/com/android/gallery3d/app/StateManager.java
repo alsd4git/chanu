@@ -37,9 +37,9 @@ public class StateManager {
     private static final String KEY_STATE = "bundle";
     private static final String KEY_CLASS = "class";
     private static final String KEY_LAUNCH_GALLERY_ON_TOP = "launch-gallery-on-top";
-    private boolean mIsResumed = false;
     private final GalleryActivity mContext;
     private final Stack<StateEntry> mStack = new Stack<StateEntry>();
+    private boolean mIsResumed = false;
     private ActivityState.ResultEntry mResult;
     private boolean mLaunchGalleryOnTop = false;
 

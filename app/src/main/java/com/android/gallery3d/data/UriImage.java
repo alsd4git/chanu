@@ -47,14 +47,12 @@ public class UriImage extends MediaItem {
 
     private final Uri mUri;
     private final String mContentType;
-
+    private final GalleryApp mApplication;
     private DownloadCache.Entry mCacheEntry;
     private ParcelFileDescriptor mFileDescriptor;
     private int mState = STATE_INIT;
     private int mWidth;
     private int mHeight;
-
-    private final GalleryApp mApplication;
 
     public UriImage(GalleryApp application, Path path, Uri uri) {
         super(path, nextVersionNumber());

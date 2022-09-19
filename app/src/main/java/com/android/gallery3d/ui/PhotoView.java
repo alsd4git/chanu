@@ -64,20 +64,20 @@ public class PhotoView extends GLView {
     private final DownUpDetector mDownUpDetector;
     private final PositionController mPositionController;
     private final TileImageView mTileView;
-    private PhotoTapListener mPhotoTapListener;
-    private Model mModel;
     private final StringTexture mLoadingText;
     private final StringTexture mNoThumbnailText;
-    private int mTransitionMode = TRANS_NONE;
     private final EdgeView mEdgeView;
     private final Texture mVideoPlayIcon;
-    private boolean mShowVideoPlayIcon;
     private final ProgressSpinner mLoadingSpinner;
     private final SynchronizedHandler mHandler;
+    private final GalleryActivity mActivity;
+    private PhotoTapListener mPhotoTapListener;
+    private Model mModel;
+    private int mTransitionMode = TRANS_NONE;
+    private boolean mShowVideoPlayIcon;
     private int mLoadingState = LOADING_COMPLETE;
     private int mImageRotation;
     private Path mOpenedItemPath;
-    private final GalleryActivity mActivity;
     private boolean mIgnoreUpEvent = false;
 
     public PhotoView(GalleryActivity activity) {

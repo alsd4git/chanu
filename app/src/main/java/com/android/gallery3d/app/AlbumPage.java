@@ -93,12 +93,6 @@ public class AlbumPage extends ActivityState implements GalleryActionBar.Cluster
     private MediaSet mMediaSet;
     private boolean mShowDetails;
     private float mUserDistance; // in pixel
-
-    private ProgressDialog mProgressDialog;
-    private Future<?> mPendingTask;
-
-    private Future<Integer> mSyncTask = null;
-
     private final GLView mRootPane = new GLView() {
         private final float[] mMatrix = new float[16];
 
@@ -129,6 +123,9 @@ public class AlbumPage extends ActivityState implements GalleryActionBar.Cluster
             canvas.restore();
         }
     };
+    private ProgressDialog mProgressDialog;
+    private Future<?> mPendingTask;
+    private Future<Integer> mSyncTask = null;
 
     @Override
     protected void onBackPressed() {

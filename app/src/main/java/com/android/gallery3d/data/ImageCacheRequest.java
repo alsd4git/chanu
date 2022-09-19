@@ -28,11 +28,10 @@ import com.android.gallery3d.util.ThreadPool.JobContext;
 
 public abstract class ImageCacheRequest implements Job<Bitmap> {
     private static final String TAG = "ImageCacheRequest";
-
-    protected GalleryApp mApplication;
     private final Path mPath;
     private final int mType;
     private final int mTargetSize;
+    protected GalleryApp mApplication;
 
     public ImageCacheRequest(GalleryApp application, Path path, int type, int targetSize) {
         mApplication = application;

@@ -72,10 +72,9 @@ public class DownloadCache {
     private final GalleryApp mApplication;
     private final SQLiteDatabase mDatabase;
     private final long mCapacity;
-
+    private final WeakHashMap<Object, Entry> mAssociateMap = new WeakHashMap<Object, Entry>();
     private long mTotalBytes = 0;
     private boolean mInitialized = false;
-    private final WeakHashMap<Object, Entry> mAssociateMap = new WeakHashMap<Object, Entry>();
 
     public DownloadCache(GalleryApp application, File root, long capacity) {
         mRoot = Utils.checkNotNull(root);

@@ -108,8 +108,6 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     private final PhotoView mPhotoView;
     private final MediaSet mSource;
     private final SourceListener mSourceListener = new SourceListener();
-    private int mContentStart = 0;
-    private int mContentEnd = 0;
     /*
      * The ImageCache is a version-to-ImageEntry map. It only holds
      * the ImageEntries in the range of [mActiveStart, mActiveEnd).
@@ -118,6 +116,8 @@ public class PhotoDataAdapter implements PhotoPage.Model {
      * within the[mContentStart, mContentEnd) range.
      */
     private final HashMap<Long, ImageEntry> mImageCache = new HashMap<Long, ImageEntry>();
+    private int mContentStart = 0;
+    private int mContentEnd = 0;
     private int mActiveStart = 0;
     private int mActiveEnd = 0;
     // mCurrentIndex is the "center" image the user is viewing. The change of

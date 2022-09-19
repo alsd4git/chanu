@@ -51,12 +51,10 @@ public class SlideshowPage extends ActivityState {
 
     private static final int MSG_LOAD_NEXT_BITMAP = 1;
     private static final int MSG_SHOW_PENDING_BITMAP = 2;
+    private final Intent mResultIntent = new Intent();
     private Handler mHandler;
     private Model mModel;
     private SlideshowView mSlideshowView;
-    private Slide mPendingSlide = null;
-    private boolean mIsActive = false;
-    private final Intent mResultIntent = new Intent();
     private final GLView mRootPane = new GLView() {
         @Override
         protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
@@ -76,6 +74,8 @@ public class SlideshowPage extends ActivityState {
             canvas.clearBuffer();
         }
     };
+    private Slide mPendingSlide = null;
+    private boolean mIsActive = false;
 
     private static MediaItem findMediaItem(MediaSet mediaSet, int index) {
         for (int i = 0, n = mediaSet.getSubMediaSetCount(); i < n; ++i) {
@@ -214,8 +214,8 @@ public class SlideshowPage extends ActivityState {
         private static final int RETRY_COUNT = 5;
         private final MediaSet mMediaSet;
         private final Random mRandom = new Random();
-        private int[] mOrder = new int[0];
         private final boolean mRepeat;
+        private int[] mOrder = new int[0];
         private long mSourceVersion = MediaSet.INVALID_DATA_VERSION;
         private int mLastIndex = -1;
 

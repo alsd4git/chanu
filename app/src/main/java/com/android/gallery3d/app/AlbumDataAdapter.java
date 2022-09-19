@@ -51,15 +51,14 @@ public class AlbumDataAdapter implements AlbumView.Model {
     private final long[] mSetVersion;
     private final MediaSet mSource;
     private final Handler mMainHandler;
+    private final MySourceListener mSourceListener = new MySourceListener();
     private int mActiveStart = 0;
     private int mActiveEnd = 0;
     private int mContentStart = 0;
     private int mContentEnd = 0;
     private long mSourceVersion = MediaObject.INVALID_DATA_VERSION;
     private int mSize = 0;
-
     private AlbumView.ModelListener mModelListener;
-    private final MySourceListener mSourceListener = new MySourceListener();
     private LoadingListener mLoadingListener;
 
     private ReloadTask mReloadTask;

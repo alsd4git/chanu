@@ -44,9 +44,7 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter implements Phot
 
     private final MediaItem mItem;
     private final boolean mHasFullImage;
-    private Future<?> mTask;
     private final Handler mHandler;
-
     private final PhotoView mPhotoView;
     private final ThreadPool mThreadPool;
     private final FutureListener<BitmapRegionDecoder> mLargeListener = new FutureListener<BitmapRegionDecoder>() {
@@ -66,6 +64,7 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter implements Phot
             mHandler.sendMessage(mHandler.obtainMessage(MSG_UPDATE_IMAGE, future));
         }
     };
+    private Future<?> mTask;
 
     public SinglePhotoDataAdapter(GalleryActivity activity, PhotoView view, MediaItem item) {
         mItem = Utils.checkNotNull(item);

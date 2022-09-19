@@ -69,9 +69,9 @@ public class DataManager {
     private static final String TOP_LOCAL_VIDEO_SET_PATH = "/local/video";
     private final Handler mDefaultMainHandler;
     private final GalleryApp mApplication;
-    private int mActiveCount = 0;
     private final HashMap<Uri, NotifyBroker> mNotifierMap = new HashMap<Uri, NotifyBroker>();
     private final HashMap<String, MediaSource> mSourceMap = new LinkedHashMap<String, MediaSource>();
+    private int mActiveCount = 0;
 
 
     public DataManager(GalleryApp application) {

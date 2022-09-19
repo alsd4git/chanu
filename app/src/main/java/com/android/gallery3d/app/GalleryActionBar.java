@@ -33,7 +33,6 @@ import com.chanapps.four.gallery3d.R;
 public class GalleryActionBar implements ActionBar.OnNavigationListener {
     private static final String TAG = "GalleryActionBar";
     private static final ActionItem[] sClusterItems = new ActionItem[]{new ActionItem(FilterUtils.CLUSTER_BY_ALBUM, true, false, R.string.albums, R.string.group_by_album), new ActionItem(FilterUtils.CLUSTER_BY_LOCATION, true, false, R.string.locations, R.string.location, R.string.group_by_location), new ActionItem(FilterUtils.CLUSTER_BY_TIME, true, false, R.string.times, R.string.time, R.string.group_by_time), new ActionItem(FilterUtils.CLUSTER_BY_FACE, true, false, R.string.people, R.string.group_by_faces), new ActionItem(FilterUtils.CLUSTER_BY_TAG, true, false, R.string.tags, R.string.group_by_tags)};
-    private ClusterRunner mClusterRunner;
     //private CharSequence[] mTitles;
     //private ArrayList<Integer> mActions;
     private final Context mContext;
@@ -42,6 +41,7 @@ public class GalleryActionBar implements ActionBar.OnNavigationListener {
     private final ActionBar mActionBar;
     private final int mCurrentIndex;
     private final ClusterAdapter mAdapter = new ClusterAdapter();
+    private ClusterRunner mClusterRunner;
 
     public GalleryActionBar(GalleryActivity activity) {
         mActionBar = ((Activity) activity).getActionBar();

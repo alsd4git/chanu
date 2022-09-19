@@ -27,12 +27,11 @@ public class AlbumView extends SlotView {
     private static final String TAG = "AlbumView";
     private static final int CACHE_SIZE = 128;
     private final GalleryActivity mActivity;
+    private final int mCacheThumbSize;
     private int mVisibleStart = 0;
     private int mVisibleEnd = 0;
     private AlbumSlidingWindow mDataWindow;
     private SelectionDrawer mSelectionDrawer;
-    private final int mCacheThumbSize;
-
     private boolean mIsActive = false;
 
     public AlbumView(GalleryActivity activity, SlotView.Spec spec, int cacheThumbSize) {

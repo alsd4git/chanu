@@ -86,6 +86,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     private static final int REQUEST_CROP = 2;
     private static final int REQUEST_CROP_PICASA = 3;
     private static final boolean DEBUG = false;
+    private final Intent mResultIntent = new Intent();
     private GalleryApp mApplication;
     private SelectionManager mSelectionManager;
     private PhotoView mPhotoView;
@@ -93,22 +94,6 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     private FilmStripView mFilmStripView;
     private DetailsHelper mDetailsHelper;
     private boolean mShowDetails;
-    // mMediaSet could be null if there is no KEY_MEDIA_SET_PATH supplied.
-    // E.g., viewing a photo in gmail attachment
-    private MediaSet mMediaSet;
-    private Menu mMenu;
-    private final Intent mResultIntent = new Intent();
-    private int mCurrentIndex = 0;
-    private Handler mHandler;
-    private boolean mShowBars = true;
-    private ActionBar mActionBar;
-    private MyMenuVisibilityListener mMenuVisibilityListener;
-    private boolean mIsMenuVisible;
-    private boolean mIsInteracting;
-
-    private MediaItem mCurrentPhoto = null;
-    private MenuExecutor mMenuExecutor;
-    private boolean mIsActive;
     private final GLView mRootPane = new GLView() {
 
         @Override
@@ -131,6 +116,20 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
             }
         }
     };
+    // mMediaSet could be null if there is no KEY_MEDIA_SET_PATH supplied.
+    // E.g., viewing a photo in gmail attachment
+    private MediaSet mMediaSet;
+    private Menu mMenu;
+    private int mCurrentIndex = 0;
+    private Handler mHandler;
+    private boolean mShowBars = true;
+    private ActionBar mActionBar;
+    private MyMenuVisibilityListener mMenuVisibilityListener;
+    private boolean mIsMenuVisible;
+    private boolean mIsInteracting;
+    private MediaItem mCurrentPhoto = null;
+    private MenuExecutor mMenuExecutor;
+    private boolean mIsActive;
 
     public static void playVideo(Activity activity, Uri uri, Path path, String mimeType) {
         try {

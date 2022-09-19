@@ -64,6 +64,7 @@ public class GLRootView extends GLSurfaceView implements GLSurfaceView.Renderer,
     private final LinkedList<OnGLIdleListener> mIdleListeners = new LinkedList<OnGLIdleListener>();
     private final IdleRunner mIdleRunner = new IdleRunner();
     private final ReentrantLock mRenderLock = new ReentrantLock();
+    private final Rect mClipRect = new Rect();
     private int mFrameCount = 0;
     private long mFrameCountingStart = 0;
     private int mInvalidateColor = 0;
@@ -73,7 +74,6 @@ public class GLRootView extends GLSurfaceView implements GLSurfaceView.Renderer,
     private DisplayMetrics mDisplayMetrics;
     private int mFlags = FLAG_NEED_LAYOUT;
     private volatile boolean mRenderRequested = false;
-    private final Rect mClipRect = new Rect();
     private int mClipRetryCount = 0;
     private long mLastDrawFinishTime;
     private boolean mInDownState = false;

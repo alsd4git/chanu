@@ -36,13 +36,13 @@ public class SlideshowView extends GLView {
     private static final float SCALE_SPEED = 0.20f;
     private static final float MOVE_SPEED = SCALE_SPEED;
     private final FloatAnimation mTransitionAnimation = new FloatAnimation(0, 1, TRANSITION_DURATION);
+    private final Random mRandom = new Random();
     private int mCurrentRotation;
     private BitmapTexture mCurrentTexture;
     private SlideshowAnimation mCurrentAnimation;
     private int mPrevRotation;
     private BitmapTexture mPrevTexture;
     private SlideshowAnimation mPrevAnimation;
-    private final Random mRandom = new Random();
 
     public void next(Bitmap bitmap, int rotation) {
 

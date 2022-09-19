@@ -81,6 +81,11 @@ public class TileImageView extends GLView {
     private final Rect mTileRange = new Rect();
     private final Rect[] mActiveRange = {new Rect(), new Rect()};
     private final TileUploader mTileUploader = new TileUploader();
+    // The following three queue is guarded by TileImageView.this
+    private final TileQueue mRecycledQueue = new TileQueue();
+    private final TileQueue mUploadQueue = new TileQueue();
+    private final TileQueue mDecodeQueue = new TileQueue();
+    private final ThreadPool mThreadPool;
     protected BitmapTexture mBackupImage;
     protected int mLevelCount;  // cache the value of mScaledBitmaps.length
     // The width and height of the full-sized bitmap
@@ -104,13 +109,8 @@ public class TileImageView extends GLView {
     private int mOffsetY;
     private int mUploadQuota;
     private boolean mRenderComplete;
-    // The following three queue is guarded by TileImageView.this
-    private final TileQueue mRecycledQueue = new TileQueue();
-    private final TileQueue mUploadQueue = new TileQueue();
-    private final TileQueue mDecodeQueue = new TileQueue();
     private boolean mIsTextureFreed;
     private Future<Void> mTileDecoder;
-    private final ThreadPool mThreadPool;
     private boolean mBackgroundTileUploaded;
 
     public TileImageView(GalleryContext context) {

@@ -56,10 +56,10 @@ public class LocalPhotoSource implements WidgetSource {
     private static final Path LOCAL_IMAGE_ROOT = Path.fromString("/local/image/item");
     private final Context mContext;
     private final ArrayList<Long> mPhotos = new ArrayList<Long>();
-    private ContentListener mContentListener;
     private final ContentObserver mContentObserver;
-    private boolean mContentDirty = true;
     private final DataManager mDataManager;
+    private ContentListener mContentListener;
+    private boolean mContentDirty = true;
 
     public LocalPhotoSource(Context context) {
         mContext = context;

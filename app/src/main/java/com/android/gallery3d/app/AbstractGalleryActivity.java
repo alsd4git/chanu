@@ -41,18 +41,17 @@ import com.chanapps.four.gallery3d.R;
 public class AbstractGalleryActivity extends Activity implements GalleryActivity {
     @SuppressWarnings("unused")
     private static final String TAG = "AbstractGalleryActivity";
+    private final PositionRepository mPositionRepository = new PositionRepository();
+    private final IntentFilter mMountFilter = new IntentFilter(Intent.ACTION_MEDIA_MOUNTED);
     protected GLRootView mGLRootView;
     private StateManager mStateManager;
-    private final PositionRepository mPositionRepository = new PositionRepository();
-
     private AlertDialog mAlertDialog = null;
-    private final IntentFilter mMountFilter = new IntentFilter(Intent.ACTION_MEDIA_MOUNTED);    private final BroadcastReceiver mMountReceiver = new BroadcastReceiver() {
+    private Handler handler;    private final BroadcastReceiver mMountReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (getExternalCacheDir() != null) onStorageReady();
         }
     };
-    private Handler handler;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -211,6 +210,7 @@ public class AbstractGalleryActivity extends Activity implements GalleryActivity
     public Handler getHandler() {
         return handler;
     }
+
 
 
 

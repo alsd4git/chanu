@@ -19,8 +19,8 @@ package com.android.gallery3d.ui;
 import android.view.MotionEvent;
 
 public class DownUpDetector {
-    private boolean mStillDown;
     private final DownUpListener mListener;
+    private boolean mStillDown;
 
     public DownUpDetector(DownUpListener listener) {
         mListener = listener;

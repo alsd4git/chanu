@@ -48,12 +48,12 @@ abstract class UploadedTexture extends BasicTexture {
     @SuppressWarnings("unused")
     private static final String TAG = "Texture";
     private static final int UPLOAD_LIMIT = 100;
-    static int[] sTextureId = new int[1];
-    static float[] sCropRect = new float[4];
     // To prevent keeping allocation the borders, we store those used borders here.
     // Since the length will be power of two, it won't use too much memory.
     private static final HashMap<BorderKey, Bitmap> sBorderLines = new HashMap<BorderKey, Bitmap>();
     private static final BorderKey sBorderKey = new BorderKey();
+    static int[] sTextureId = new int[1];
+    static float[] sCropRect = new float[4];
     private static int sUploadedCount;
     protected Bitmap mBitmap;
     protected BitmapFactory.Options mBitmapOptions;

@@ -20,10 +20,10 @@ import java.util.ArrayList;
 
 public class ClusterAlbum extends MediaSet implements ContentListener {
     private static final String TAG = "ClusterAlbum";
-    private ArrayList<Path> mPaths = new ArrayList<Path>();
-    private String mName = "";
     private final DataManager mDataManager;
     private final MediaSet mClusterAlbumSet;
+    private ArrayList<Path> mPaths = new ArrayList<Path>();
+    private String mName = "";
 
     public ClusterAlbum(Path path, DataManager dataManager, MediaSet clusterAlbumSet) {
         super(path, nextVersionNumber());
