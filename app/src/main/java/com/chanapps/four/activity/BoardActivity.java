@@ -942,6 +942,7 @@ public class BoardActivity extends AbstractDrawerActivity implements ChanIdentif
     protected void bindPauseOnScrollListener() {
         ImageLoader imageLoader = ChanImageLoader.getInstance(getApplicationContext());
         AbsListView.OnScrollListener customListener = absListView != null && absListView instanceof EnhancedListView ? ((EnhancedListView) absListView).makeScrollListener() : null;
+        assert absListView != null;
         absListView.setOnScrollListener(new PauseOnScrollListener(imageLoader, true, true, customListener));
     }
 

@@ -70,7 +70,7 @@ public class BoardViewer {
         @Override
         public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
             if (DEBUG)
-                Log.e(TAG, "Loading failed uri=" + imageUri + " reason=" + failReason.getType());
+                Log.e(TAG, "Loading failed uri=" + imageUri + " reason=" + failReason);
             //displayDefaultItem(imageUri, view);
             if (view != null) {
                 view.setTag(R.id.IMG_URL, null);

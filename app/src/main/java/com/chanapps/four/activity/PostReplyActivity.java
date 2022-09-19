@@ -843,7 +843,15 @@ public class PostReplyActivity extends FragmentActivity implements ChanIdentifie
                 return;
             }
             if (DEBUG) Log.i(TAG, "Setting preview image to uri=" + imageUri);
-            DisplayImageOptions options = (new DisplayImageOptions.Builder()).cacheInMemory().cacheOnDisc().showStubImage(R.drawable.stub_image_background).resetViewBeforeLoading().displayer(new FadeInBitmapDisplayer(100)).fullSizeImageLocation(imageUri.toString()).imageSize(new ImageSize(300, 300)).build();
+            DisplayImageOptions options =
+                    (new DisplayImageOptions.Builder())
+                            .cacheInMemory()
+                            .cacheOnDisc()
+                            .showStubImage(R.drawable.stub_image_background)
+                            .resetViewBeforeLoading()
+                            .displayer(new FadeInBitmapDisplayer(100))
+//                            .imageSize(new ImageSize(300, 300))
+                            .build();
             ChanImageLoader.getInstance(this).displayImage(imageUri.toString(), imagePreview, options, previewListener);
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), R.string.post_reply_no_image, Toast.LENGTH_SHORT).show();

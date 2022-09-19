@@ -258,7 +258,13 @@ public class ThreadViewer {
     }
 
     private static DisplayImageOptions createExpandedDisplayImageOptions(ImageSize imageSize) {
-        return new DisplayImageOptions.Builder().cacheOnDisc().cacheInMemory().imageSize(imageSize).displayer(new FadeInBitmapDisplayer(100)).imageScaleType(ImageScaleType.EXACTLY_STRETCHED).showStubImage(stub).resetViewBeforeLoading().build();
+        return new DisplayImageOptions.Builder()
+                .cacheOnDisc()
+                .cacheInMemory()
+//                .imageSize(imageSize)
+                .displayer(new FadeInBitmapDisplayer(100))
+                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                .showStubImage(stub).resetViewBeforeLoading().build();
     }
 
     public static boolean setViewValue(final View view, final Cursor cursor, String groupBoardCode, boolean showContextMenu, int columnWidth, int columnHeight, View.OnClickListener thumbOnClickListener, SpannableOnClickListener backlinkOnClickListener, View.OnClickListener commentsOnClickListener, View.OnClickListener imagesOnClickListener, View.OnClickListener repliesOnClickListener, View.OnClickListener sameIdOnClickListener, View.OnClickListener exifOnClickListener, View.OnClickListener overflowListener, View.OnClickListener expandedImageListener, View.OnLongClickListener startActionModeListener, View.OnClickListener goToThreadUrlListener) {

@@ -165,7 +165,15 @@ public class WebImageDialogFragment extends DialogFragment {
         String postExt = "_downloaded_" + UUID.randomUUID() + ".jpg"; // correct?
         fullImageUri = ChanFileStorage.getHiddenLocalImageUri(urlTextView.getContext(), boardCode, threadNo, postExt);
         fullImagePath = (new File(URI.create(fullImageUri.toString()))).getAbsolutePath();
-        DisplayImageOptions options = (new DisplayImageOptions.Builder()).cacheInMemory().cacheOnDisc().showStubImage(R.drawable.stub_image_background).resetViewBeforeLoading().displayer(new FadeInBitmapDisplayer(100)).fullSizeImageLocation(fullImagePath).imageSize(new ImageSize(300, 300)).build();
+        DisplayImageOptions options = (new DisplayImageOptions.Builder())
+                .cacheInMemory()
+                .cacheOnDisc()
+                .showStubImage(R.drawable.stub_image_background)
+                .resetViewBeforeLoading()
+                .displayer(new FadeInBitmapDisplayer(100))
+//                .fullSizeImageLocation(fullImagePath)
+//                .imageSize(new ImageSize(300, 300))
+                .build();
         ChanImageLoader.getInstance(urlTextView.getContext()).displayImage(url, webImage, options, imageListener);
     }
 

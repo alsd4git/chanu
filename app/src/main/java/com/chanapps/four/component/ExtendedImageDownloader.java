@@ -6,7 +6,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
-import com.nostra13.universalimageloader.core.download.URLConnectionImageDownloader;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -18,7 +18,7 @@ import java.net.URISyntaxException;
 /**
  * @author Sergey Tarasevich (nostra13[at]gmail[dot]com)
  */
-public class ExtendedImageDownloader extends URLConnectionImageDownloader {
+public class ExtendedImageDownloader extends BaseImageDownloader {
 
     public static final String PROTOCOL_ASSETS = "assets";
     public static final String PROTOCOL_DRAWABLE = "drawable";
@@ -33,13 +33,12 @@ public class ExtendedImageDownloader extends URLConnectionImageDownloader {
         this.context = context;
     }
 
-    @Override
     protected InputStream getStreamFromOtherSource(String imageUri, Object extra) throws IOException {
         URI imageUrl = null;
         try {
             imageUrl = new URI(imageUri);
         } catch (URISyntaxException e) {
-            Log.e(TAG, "Exception with uri syntax", e);
+            Log.e("ExtendedImageDownloader", "Exception with uri syntax", e);
         }
         String protocol = imageUrl.getScheme();
         if (PROTOCOL_ASSETS.equals(protocol)) {
@@ -47,7 +46,7 @@ public class ExtendedImageDownloader extends URLConnectionImageDownloader {
         } else if (PROTOCOL_DRAWABLE.equals(protocol)) {
             return getStreamFromDrawable(imageUrl);
         } else {
-            return super.getStreamFromOtherSource(imageUri, extra);
+            return super.getStreamFromOtherSource(imageUrl, extra);
         }
     }
 
@@ -62,7 +61,7 @@ public class ExtendedImageDownloader extends URLConnectionImageDownloader {
         BitmapDrawable drawable = (BitmapDrawable) context.getResources().getDrawable(drawableId);
         Bitmap bitmap = drawable.getBitmap();
         if (DEBUG)
-            Log.d(TAG, "Getting drawable from stream: " + imageUri + " has value " + drawable);
+            Log.d("ExtendedImageDownloader", "Getting drawable from stream: " + imageUri + " has value " + drawable);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         bitmap.compress(CompressFormat.PNG, 0, os);
         return new ByteArrayInputStream(os.toByteArray());
