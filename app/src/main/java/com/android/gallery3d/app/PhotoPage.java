@@ -334,22 +334,6 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
         if (mCurrentPhoto == null || mDetailsHelper == null) return;
         mDetailsHelper.reloadDetails(mModel.getCurrentIndex());
         if (DEBUG) Log.w(TAG, "updateCurrentPhoto mDetailsHelper=" + mDetailsHelper);
-        /* can't get go-directly-to-post activity working yet
-        if (mCurrentPhoto instanceof ChanImage && mDetailsHelper != null) {
-            ChanImage image = (ChanImage)mCurrentPhoto;
-            final ChanActivityId aid = image.getChanActivityId();
-            if (aid != null)
-                mDetailsHelper.setClickListener(R.string.picasa_posts, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String boardCode = aid.boardCode;
-                        long threadNo = aid.threadNo;
-                        long postNo = aid.postNo;
-                        ThreadActivity.startActivity(mActivity.getAndroidContext(), boardCode, threadNo, postNo, "");
-                    }
-                });
-        }
-        */
     }
 
     private void updateMenuOperations() {
@@ -583,17 +567,6 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
         boolean playGif = playableAnimGif(item);
         boolean playVideo = (item.getSupportedOperations() & MediaItem.SUPPORT_PLAY) != 0;
 
-        /*
-        if (playVideo) {
-            // determine if the point is at center (1/6) of the photo view.
-            // (The position of the "play" icon is at center (1/6) of the photo)
-            int w = mPhotoView.getWidth();
-            int h = mPhotoView.getHeight();
-            playVideo = (Math.abs(x - w / 2) * 12 <= w)
-                    && (Math.abs(y - h / 2) * 12 <= h);
-        }
-        */
-
         if (playGif) {
             hideOrPlayAnimGif(item);
         } else if (playVideo) {
@@ -637,16 +610,6 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
             if (DEBUG) Log.i(TAG, "Play anim gif null gifview, recreating activity=" + activity);
             activity.recreate();
             return;
-            /*
-            LayoutInflater inflater = activity.getLayoutInflater();
-            view = inflater.inflate(com.chanapps.four.activity.R.layout.gifview, galleryFrameLayout, false);
-            if (view == null) {
-                if (DEBUG) Log.i(TAG, "Couldn't recreate gifview, exiting");
-                return;
-            }
-            galleryFrameLayout.addView(view, 2);
-            if (DEBUG) Log.i(TAG, "Recreated gifview=" + view);
-		    */
         }
         WebView myWebView = view.findViewById(com.chanapps.four.activity.R.id.video_view);
         if (myWebView == null) {
@@ -661,12 +624,6 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
         if (myWebView.isFocused()) {
             if (DEBUG) Log.i(TAG, "Already focused, exiting");
         }
-        /*
-        if ((localPlayUri + "#" + version).equals(myWebView.getTag())) {
-            if (DEBUG) Log.i(TAG, "Exiting play anim gif since already loaded url=" + localPlayUri + " version=" + version);
-            return;
-        }
-        */
         if (DEBUG)
             Log.w(TAG, "Screen size w: " + rootView.getMeasuredWidth() + " h: " + rootView.getMeasuredHeight());
         if (DEBUG) Log.w(TAG, "Image  size w: " + item.getWidth() + " h: " + item.getHeight());
@@ -685,6 +642,12 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
         myWebView.setBackgroundColor(0x000000);
         myWebView.getSettings().setJavaScriptEnabled(false);
         myWebView.getSettings().setBuiltInZoomControls(false);
+
+        //these lines are used to fix gif reproduction on targetSdk30+
+        myWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
+        myWebView.getSettings().setDomStorageEnabled(true);
+        myWebView.getSettings().setAllowContentAccess(true);
+        myWebView.getSettings().setAllowFileAccess(true);
 
         if (DEBUG) Log.i(TAG, "Loading anim gif webview url = " + localPlayUri);
         myWebView.loadUrl(localPlayUri.toString());

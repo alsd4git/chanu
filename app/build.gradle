@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.chanapps.four.activity"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 30
 
         versionCode 100

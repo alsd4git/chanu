@@ -87,7 +87,7 @@ public class DataManager {
 //        addSource(new PicasaSource(mApplication));
 //        addSource(new MtpSource(mApplication));
         addSource(new ComboSource(mApplication));
-        addSource(new ClusterSource(mApplication));
+//        addSource(new ClusterSource(mApplication));
         addSource(new FilterSource(mApplication));
         addSource(new UriSource(mApplication));
 

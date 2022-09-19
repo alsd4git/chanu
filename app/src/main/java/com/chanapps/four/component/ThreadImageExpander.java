@@ -3,7 +3,6 @@ package com.chanapps.four.component;
 import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.net.Uri;
 import android.util.Log;
@@ -17,8 +16,6 @@ import com.chanapps.four.gallery.ChanImage;
 import com.chanapps.four.viewer.ThreadViewHolder;
 import com.chanapps.four.viewer.ThreadViewer;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 import java.io.File;
 import java.net.URI;
@@ -69,42 +66,6 @@ public class ThreadImageExpander {
             String mimeType = ChanImage.videoMimeType(postExt);
             Uri uri = Uri.parse(postImageUrl);
             ChanImage.startViewer(a, uri, mimeType);
-        }
-    };
-    ImageLoadingListener expandedImageLoadingListener = new ImageLoadingListener() {
-        @Override
-        public void onLoadingStarted(String imageUri, View view) {
-            displayClickEffect();
-        }
-
-        @Override
-        public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-            String reason = failReason.toString();
-            if (DEBUG)
-                Log.e(TAG, "Failed to download " + postImageUrl + " to file=" + fullImagePath + " reason=" + reason);
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
-        }
-
-        @Override
-        public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-            if (DEBUG) Log.v(TAG, "onLoadingComplete uri=" + imageUri);
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
-            displayClickEffect();
-            if (viewHolder.list_item_image_expansion_target != null) {
-                //viewHolder.list_item_image_expansion_target.setOnClickListener(null);
-                //viewHolder.list_item_image_expansion_target.setForeground(view.getResources().getDrawable(R.drawable.null_selector_bg));
-            }
-
-            //if (withProgress)
-            //     ThreadViewer.toggleExpandedImage(viewHolder);
-        }
-
-        @Override
-        public void onLoadingCancelled(String imageUri, View view) {
-            //if (viewHolder.list_item_expanded_progress_bar != null && withProgress)
-            //    viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
         }
     };
 
@@ -175,78 +136,11 @@ public class ThreadImageExpander {
             Log.i(TAG, "inputSize=" + width + "x" + height + " targetSize=" + targetSize.x + "x" + targetSize.y);
         setImageDimensions(viewHolder, targetSize);
         displayWebView(width, height);
-        /*
-        viewHolder.isWebView = isAnimatedGif() || isBigImage(targetSize);
-        if (viewHolder.isWebView)
-            displayWebView();
-        else
-            displayImageView();
-        */
     }
 
-    /*
-    protected WebViewClient webViewClient = new WebViewClient() {
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            if (view != null)
-                view.setVisibility(View.VISIBLE);
-        }
-    };
-    */
-
-    /*
-    protected void displayImageView() {
-        if (viewHolder.list_item_image_expanded_wrapper != null)
-            viewHolder.list_item_image_expanded_wrapper.setVisibility(View.VISIBLE);
-        if (viewHolder.list_item_expanded_progress_bar != null)
-            viewHolder.list_item_expanded_progress_bar.setVisibility(withProgress ? View.VISIBLE : View.GONE);
-        if (viewHolder.list_item_image_expanded != null)
-            viewHolder.list_item_image_expanded.setVisibility(View.VISIBLE);
-        if (viewHolder.list_item_image_expanded_webview != null)
-            viewHolder.list_item_image_expanded_webview.setVisibility(View.GONE);
-        if (viewHolder.list_item_image_header != null)
-            viewHolder.list_item_image_header.setVisibility(View.GONE);
-        int width = targetSize.x; // may need to adjust to avoid out of mem
-        int height = targetSize.y;
-        ImageSize imageSize = new ImageSize(width, height); // load image at half res to avoid out of mem
-        if (DEBUG) Log.i(TAG, "Downsampling image to size=" + imageSize.getWidth() + "x" + imageSize.getHeight());
-        DisplayImageOptions expandedDisplayImageOptions = new DisplayImageOptions.Builder()
-                .imageSize(imageSize)
-                        //.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
-                .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
-                .cacheOnDisc()
-                .fullSizeImageLocation(fullImagePath)
-                .resetViewBeforeLoading()
-                .showStubImage(stub)
-                .build();
-        // display image async
-        ChanImageLoader
-                .getInstance(viewHolder.list_item_image_expanded.getContext())
-                .displayImage(postImageUrl, viewHolder.list_item_image_expanded,
-                        expandedDisplayImageOptions, expandedImageLoadingListener);
-    }
-    */
-
-    /*
-    protected boolean isAnimatedGif() {
-        return ChanImage.isAnimatedGif(postExt, fsize, postW, postH);
-    }
-
-    protected boolean isBigImage(Point targetSize) {
-        int targetSizeBytes = targetSize.x * targetSize.y * BYTES_PER_PIXEL;
-        return fsize > BIG_IMAGE_SIZE_BYTES
-                || targetSizeBytes > BIG_IMAGE_SIZE_BYTES;
-    }
-    */
     protected void displayWebView(int width, int height) {
         if (viewHolder.list_item_image_expanded_wrapper != null)
             viewHolder.list_item_image_expanded_wrapper.setVisibility(View.VISIBLE);
-        /*
-        if (viewHolder.list_item_expanded_progress_bar != null)
-            viewHolder.list_item_expanded_progress_bar.setVisibility(View.GONE);
-        if (viewHolder.list_item_image_expanded != null)
-            viewHolder.list_item_image_expanded.setVisibility(View.GONE);
-        */
         if (viewHolder.list_item_image_wrapper != null)
             viewHolder.list_item_image_wrapper.setVisibility(View.GONE);
         if (viewHolder.list_item_image_header != null)
@@ -299,104 +193,4 @@ public class ThreadImageExpander {
     private void setGalleryListener() {
         viewHolder.list_item_image_expanded_click_effect.setOnClickListener(expandedImageListener);
     }
-
-    /*
-    private View.OnClickListener collapseImageListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            ThreadViewer.toggleExpandedImage(viewHolder);
-        }
-    };
-    */
-
-    private boolean shouldExpandImage() {
-        /*
-        if (viewHolder.list_item_image_expanded != null
-                && viewHolder.list_item_image_expanded.getVisibility() != View.GONE
-                && viewHolder.list_item_image_expanded.getHeight() > 0) {
-            if (DEBUG) Log.i(TAG, "Image already expanded, skipping");
-            return false;
-        }
-        else
-        */
-        if (viewHolder.list_item_image_expanded_webview != null && viewHolder.list_item_image_expanded_webview.getVisibility() != View.GONE && viewHolder.list_item_image_expanded_webview.getHeight() > 0) {
-            if (DEBUG) Log.i(TAG, "Image webview already expanded, skipping");
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /*
-    private void clearImage() {
-        if (DEBUG) Log.i(TAG, "Clearing existing image");
-        ThreadViewer.clearBigImageView(viewHolder.list_item_image_expanded); // clear old image
-        if (DEBUG) Log.i(TAG, "Existing image cleared");
-    }
-
-    private void expandImage() {
-        if (!shouldExpandImage()) {
-            collapseImageView();
-            return;
-        }
-        clearImage();
-        //ThreadViewer.initStatics(viewHolder.list_item_image_expanded);
-        //Point targetSize = sizeExpandedImage(postW, postH);
-        Point targetSize = ThreadViewer.sizeHeaderImage(postW, postH);
-        if (DEBUG) Log.i(TAG, "inputSize=" + postW + "x" + postH + " targetSize=" + targetSize.x + "x" + targetSize.y);
-        setImageDimensions(targetSize);
-        displayImage(targetSize, true);
-    }
-
-    private static Point sizeExpandedImage(final int actualWidth, final int actualHeight) {
-    Point imageSize = new Point();
-    double aspectRatio = (double) actualWidth / (double) actualHeight;
-
-    if (aspectRatio < 1) { // tall image, restrict by height
-        int desiredHeight =
-                //powerOfTwoReduce(
-                //        actualHeight,
-                        Math.min(ThreadViewer.cardMaxImageHeight(), (int)(actualHeight * MAX_EXPANDED_SCALE))
-                //)
-                ;
-        imageSize.x = (int) (aspectRatio * (double) desiredHeight);
-        imageSize.y = desiredHeight;
-    } else {
-        int desiredWidth =
-                //powerOfTwoReduce(
-                //        actualWidth,
-                        Math.min(ThreadViewer.cardMaxImageWidth(), (int)(actualWidth * MAX_EXPANDED_SCALE))
-                //)
-                ;
-        imageSize.x = desiredWidth; // restrict by width normally
-        imageSize.y = (int) ((double) desiredWidth / aspectRatio);
-    }
-    if (DEBUG) com.android.gallery3d.ui.Log.v(TAG, "Input size=" + actualWidth + "x" + actualHeight + " output size=" + imageSize.x + "x" + imageSize.y);
-    return imageSize;
-}
-
-private static int powerOfTwoReduce(double a, double d) { // actual, desired INT_SAMPLE_POWER_OF_2
-    if (a <= d)
-        return (int)a;
-    /* a > d
-
-       a/2^n <= d
-       a <= d * 2^n
-       a/d <= 2^n
-       ln(a/d)/ln(2) <= n
-       n >= ln(a/d)/ln(2)
-       p = ceil(n)
-
-       s = 2^p
-       o = a / s
-    */
-        /*
-        double n = Math.log(a/d) / Math.log(2);
-        int p = (int)Math.floor(n);
-        int s = (int)Math.pow(2, p); // scale
-        int o = (int)(a / s);
-        if (DEBUG) Log.i(TAG, "powerOfTwoReduce(a=" + a + ", d=" + d + ") n=" + n + " p=" + p + " s=" + s + " o=" + o);
-        return o;
-    }
-    */
 }
