@@ -7,8 +7,7 @@ android {
     defaultConfig {
         applicationId "com.chanapps.four.activity"
         minSdkVersion 15
-        targetSdkVersion 25
-        //before setting sdk 26+ we have to fix notification too
+        targetSdkVersion 30
 
         versionCode 100
         versionName "2.0.30"

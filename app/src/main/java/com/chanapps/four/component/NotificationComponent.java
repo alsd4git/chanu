@@ -1,6 +1,7 @@
 package com.chanapps.four.component;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -98,7 +99,7 @@ public class NotificationComponent {
 
         Intent threadActivityIntent = ThreadActivity.createIntent(context, board, threadNo, "");
         PendingIntent pendingIntent = PendingIntent.getActivity(context, (int) System.currentTimeMillis(), threadActivityIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
-        Notification.Builder notifBuilder = new Notification.Builder(context).setSmallIcon(R.drawable.app_icon_notification).setContentTitle(title).setContentText(text).setAutoCancel(true).setContentIntent(pendingIntent);
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel").setSmallIcon(R.drawable.app_icon_notification).setContentTitle(title).setContentText(text).setAutoCancel(true).setContentIntent(pendingIntent);
         Bitmap largeIcon = loadLargeIcon(context, loadedThread.posts[0]);
         if (largeIcon != null) notifBuilder.setLargeIcon(largeIcon);
         if (numNewReplies > 0) notifBuilder.setNumber(numNewReplies);
@@ -108,14 +109,14 @@ public class NotificationComponent {
         notificationManager.notify(notificationId, noti);
     }
 
-    protected static Notification buildNotification(Notification.Builder notifBuilder) {
+    protected static Notification buildNotification(NotificationCompat.Builder notifBuilder) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN)
             return deprecatedBuildNotification(notifBuilder);
         else return notifBuilder.build();
     }
 
     @SuppressWarnings("deprecation")
-    protected static Notification deprecatedBuildNotification(Notification.Builder notifBuilder) {
+    protected static Notification deprecatedBuildNotification(NotificationCompat.Builder notifBuilder) {
         return notifBuilder.getNotification();
     }
 
@@ -137,8 +138,11 @@ public class NotificationComponent {
         Intent intent = BoardActivity.createIntent(context, ChanBoard.defaultBoardCode(context), "");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.app_icon_notification).setContentTitle(context.getString(R.string.pref_clear_cache_notification_title)).setContentText(contentText).setContentIntent(pendingIntent).build();
-        return notification;
+        createNotificationChannel(context);
+        return new NotificationCompat.Builder(context, "Channel")
+                .setSmallIcon(R.drawable.app_icon_notification)
+                .setContentTitle(context.getString(R.string.pref_clear_cache_notification_title))
+                .setContentText(contentText).setContentIntent(pendingIntent).build();
     }
 
     public static void notifyDownloadScheduled(Context context, int notificationId, String board, long threadNo) {
@@ -149,8 +153,12 @@ public class NotificationComponent {
         String threadText = "/" + board + "/" + threadNo;
         String text = titleText + " " + threadText;
 
+        createNotificationChannel(context);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context).setContentTitle(context.getString(R.string.app_name)).setContentText(text).setSmallIcon(R.drawable.app_icon_notification);
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel")
+                .setContentTitle(context.getString(R.string.app_name))
+                .setContentText(text)
+                .setSmallIcon(R.drawable.app_icon_notification);
 
         notificationManager.notify(notificationId, notifBuilder.build());
     }
@@ -182,7 +190,7 @@ public class NotificationComponent {
 
         if (downloadImageTargetType != DownloadImageTargetType.TO_BOARD) { // notify except on board auto-download
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification.Builder notifBuilder = new Notification.Builder(context);
+            NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel");
             notifBuilder.setSmallIcon(R.drawable.app_icon_notification);
             notifBuilder.setWhen(Calendar.getInstance().getTimeInMillis());
             notifBuilder.setAutoCancel(true);
@@ -259,7 +267,12 @@ public class NotificationComponent {
         String downloadText = downloadedImages + "/" + totalNumImages;
         String text = titleText + " " + threadText + " " + downloadText;
 
-        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context).setContentTitle(context.getString(R.string.app_name)).setContentText(text).setProgress(totalNumImages, downloadedImages, false).setSmallIcon(R.drawable.app_icon_notification);
+        createNotificationChannel(context);
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel")
+                .setContentTitle(context.getString(R.string.app_name))
+                .setContentText(text)
+                .setProgress(totalNumImages, downloadedImages, false)
+                .setSmallIcon(R.drawable.app_icon_notification);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, CancelDownloadActivity.createIntent(context, notificationId, board, threadNo), Intent.FLAG_ACTIVITY_NEW_TASK | PendingIntent.FLAG_UPDATE_CURRENT);
         notifBuilder.setContentIntent(pendingIntent);
@@ -278,7 +291,7 @@ public class NotificationComponent {
         if (thread != null) thread.useFriendlyIds = useFriendlyIds;
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification.Builder notifBuilder = new Notification.Builder(context);
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel");
         notifBuilder.setWhen(Calendar.getInstance().getTimeInMillis());
         notifBuilder.setAutoCancel(true);
         notifBuilder.setContentTitle(context.getString(R.string.thread_image_download_error));
@@ -291,6 +304,20 @@ public class NotificationComponent {
 
         Notification noti = buildNotification(notifBuilder);
         notificationManager.notify(notificationId, noti);
+    }
+
+    private static void createNotificationChannel(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "test channel";
+            String description = "test channel notification";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("Channel", name, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
     }
 
     public static void notifyNewThreads(final Context context, final String boardCode, final int numNewThreads, final ChanThread newThread) {
@@ -331,7 +358,7 @@ public class NotificationComponent {
         Intent boardActivityIntent = BoardActivity.createIntent(context, boardCode, "");
         PendingIntent pendingIntent = PendingIntent.getActivity(context, (int)System.currentTimeMillis(),
                 boardActivityIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
-        Notification.Builder notifBuilder = new Notification.Builder(context)
+        NotificationCompat.Builder notifBuilder = new NotificationCompat.Builder(context, "Channel")
                 .setLargeIcon(largeIcon)
                 .setSmallIcon(R.drawable.app_icon_notification)
                 .setContentTitle(title)
