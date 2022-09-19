@@ -25,7 +25,6 @@ import com.android.gallery3d.app.GalleryApp;
 import com.android.gallery3d.common.Utils;
 import com.android.gallery3d.data.MediaSet.ItemConsumer;
 import com.android.gallery3d.data.MediaSource.PathId;
-import com.android.gallery3d.picasasource.PicasaSource;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -85,7 +84,7 @@ public class DataManager {
 
         // the order matters, the UriSource must come last
         addSource(new LocalSource(mApplication));
-        addSource(new PicasaSource(mApplication));
+//        addSource(new PicasaSource(mApplication));
 //        addSource(new MtpSource(mApplication));
         addSource(new ComboSource(mApplication));
         addSource(new ClusterSource(mApplication));

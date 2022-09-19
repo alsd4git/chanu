@@ -51,7 +51,6 @@ import com.android.gallery3d.data.LocalImage;
 import com.android.gallery3d.data.MediaItem;
 import com.android.gallery3d.data.MediaObject;
 import com.android.gallery3d.data.Path;
-import com.android.gallery3d.picasasource.PicasaSource;
 import com.android.gallery3d.ui.BitmapTileProvider;
 import com.android.gallery3d.ui.CropView;
 import com.android.gallery3d.ui.GLRoot;
@@ -193,7 +192,7 @@ public class CropImage extends AbstractGalleryActivity {
     private static void copyExif(MediaItem item, String destination, int newWidth, int newHeight) {
         try {
             ExifInterface newExif = new ExifInterface(destination);
-            PicasaSource.extractExifValues(item, newExif);
+//            PicasaSource.extractExifValues(item, newExif);
             newExif.setAttribute(ExifInterface.TAG_IMAGE_WIDTH, String.valueOf(newWidth));
             newExif.setAttribute(ExifInterface.TAG_IMAGE_LENGTH, String.valueOf(newHeight));
             newExif.setAttribute(ExifInterface.TAG_ORIENTATION, String.valueOf(0));
@@ -382,50 +381,51 @@ public class CropImage extends AbstractGalleryActivity {
     }
 
     private Uri saveToMediaProvider(JobContext jc, Bitmap cropped) {
-        if (PicasaSource.isPicasaImage(mMediaItem)) {
-            return savePicasaImage(jc, cropped);
-        } else if (mMediaItem instanceof LocalImage) {
+//        if (PicasaSource.isPicasaImage(mMediaItem)) {
+//            return savePicasaImage(jc, cropped);
+//        } else
+        if (mMediaItem instanceof LocalImage) {
             return saveLocalImage(jc, cropped);
         } else {
             return saveGenericImage(jc, cropped);
         }
     }
 
-    private Uri savePicasaImage(JobContext jc, Bitmap cropped) {
-        if (!DOWNLOAD_BUCKET.isDirectory() && !DOWNLOAD_BUCKET.mkdirs()) {
-            throw new RuntimeException("cannot create download folder");
-        }
-
-        String filename = PicasaSource.getImageTitle(mMediaItem);
-        int pos = filename.lastIndexOf('.');
-        if (pos >= 0) filename = filename.substring(0, pos);
-        File output = saveMedia(jc, cropped, DOWNLOAD_BUCKET, filename);
-        if (output == null) return null;
-
-        copyExif(mMediaItem, output.getAbsolutePath(), cropped.getWidth(), cropped.getHeight());
-
-        long now = System.currentTimeMillis() / 1000;
-        ContentValues values = new ContentValues();
-        values.put(Images.Media.TITLE, PicasaSource.getImageTitle(mMediaItem));
-        values.put(Images.Media.DISPLAY_NAME, output.getName());
-        values.put(Images.Media.DATE_TAKEN, PicasaSource.getDateTaken(mMediaItem));
-        values.put(Images.Media.DATE_MODIFIED, now);
-        values.put(Images.Media.DATE_ADDED, now);
-        values.put(Images.Media.MIME_TYPE, getOutputMimeType());
-        values.put(Images.Media.ORIENTATION, 0);
-        values.put(Images.Media.DATA, output.getAbsolutePath());
-        values.put(Images.Media.SIZE, output.length());
-        values.put(WIDTH, cropped.getWidth());
-        values.put(HEIGHT, cropped.getHeight());
-
-        double latitude = PicasaSource.getLatitude(mMediaItem);
-        double longitude = PicasaSource.getLongitude(mMediaItem);
-        if (GalleryUtils.isValidLocation(latitude, longitude)) {
-            values.put(Images.Media.LATITUDE, latitude);
-            values.put(Images.Media.LONGITUDE, longitude);
-        }
-        return getContentResolver().insert(Images.Media.EXTERNAL_CONTENT_URI, values);
-    }
+//    private Uri savePicasaImage(JobContext jc, Bitmap cropped) {
+//        if (!DOWNLOAD_BUCKET.isDirectory() && !DOWNLOAD_BUCKET.mkdirs()) {
+//            throw new RuntimeException("cannot create download folder");
+//        }
+//
+//        String filename = PicasaSource.getImageTitle(mMediaItem);
+//        int pos = filename.lastIndexOf('.');
+//        if (pos >= 0) filename = filename.substring(0, pos);
+//        File output = saveMedia(jc, cropped, DOWNLOAD_BUCKET, filename);
+//        if (output == null) return null;
+//
+//        copyExif(mMediaItem, output.getAbsolutePath(), cropped.getWidth(), cropped.getHeight());
+//
+//        long now = System.currentTimeMillis() / 1000;
+//        ContentValues values = new ContentValues();
+//        values.put(Images.Media.TITLE, PicasaSource.getImageTitle(mMediaItem));
+//        values.put(Images.Media.DISPLAY_NAME, output.getName());
+//        values.put(Images.Media.DATE_TAKEN, PicasaSource.getDateTaken(mMediaItem));
+//        values.put(Images.Media.DATE_MODIFIED, now);
+//        values.put(Images.Media.DATE_ADDED, now);
+//        values.put(Images.Media.MIME_TYPE, getOutputMimeType());
+//        values.put(Images.Media.ORIENTATION, 0);
+//        values.put(Images.Media.DATA, output.getAbsolutePath());
+//        values.put(Images.Media.SIZE, output.length());
+//        values.put(WIDTH, cropped.getWidth());
+//        values.put(HEIGHT, cropped.getHeight());
+//
+//        double latitude = PicasaSource.getLatitude(mMediaItem);
+//        double longitude = PicasaSource.getLongitude(mMediaItem);
+//        if (GalleryUtils.isValidLocation(latitude, longitude)) {
+//            values.put(Images.Media.LATITUDE, latitude);
+//            values.put(Images.Media.LONGITUDE, longitude);
+//        }
+//        return getContentResolver().insert(Images.Media.EXTERNAL_CONTENT_URI, values);
+//    }
 
     private Uri saveLocalImage(JobContext jc, Bitmap cropped) {
         LocalImage localImage = (LocalImage) mMediaItem;

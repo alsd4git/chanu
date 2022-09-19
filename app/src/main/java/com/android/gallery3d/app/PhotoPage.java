@@ -45,7 +45,6 @@ import com.android.gallery3d.data.MediaItem;
 import com.android.gallery3d.data.MediaObject;
 import com.android.gallery3d.data.MediaSet;
 import com.android.gallery3d.data.Path;
-import com.android.gallery3d.picasasource.PicasaSource;
 import com.android.gallery3d.ui.DetailsHelper;
 import com.android.gallery3d.ui.DetailsHelper.CloseListener;
 import com.android.gallery3d.ui.DetailsHelper.DetailsSource;
@@ -356,9 +355,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     private void updateMenuOperations() {
         if (mCurrentPhoto == null || mMenu == null) return;
         int supportedOperations = mCurrentPhoto.getSupportedOperations();
-        if (!GalleryUtils.isEditorAvailable((Context) mActivity, "image/*")) {
-            supportedOperations &= ~MediaObject.SUPPORT_EDIT;
-        }
+        supportedOperations &= ~MediaObject.SUPPORT_EDIT;
         updateSlideshowMenu();
         //todo this line here disable every not wanted item, like crop, rotate ecc.
         MenuExecutor.updateMenuOperation(mMenu, supportedOperations);
@@ -489,7 +486,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
             Intent intent = new Intent(CropImage.CROP_ACTION);
             intent.setClass(activity, CropImage.class);
             intent.setData(manager.getContentUri(path));
-            activity.startActivityForResult(intent, PicasaSource.isPicasaImage(current) ? REQUEST_CROP_PICASA : REQUEST_CROP);
+            activity.startActivityForResult(intent, REQUEST_CROP);
             return true;
         } else if (action == R.id.action_details) {
             if (mShowDetails) {

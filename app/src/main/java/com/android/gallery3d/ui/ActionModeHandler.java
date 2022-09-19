@@ -17,7 +17,6 @@
 package com.android.gallery3d.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -36,7 +35,6 @@ import com.android.gallery3d.data.Path;
 import com.android.gallery3d.ui.CustomMenu.DropDownMenu;
 import com.android.gallery3d.ui.MenuExecutor.ProgressListener;
 import com.android.gallery3d.util.Future;
-import com.android.gallery3d.util.GalleryUtils;
 import com.android.gallery3d.util.ThreadPool.Job;
 import com.android.gallery3d.util.ThreadPool.JobContext;
 import com.chanapps.four.gallery3d.R;
@@ -158,9 +156,9 @@ public class ActionModeHandler implements ActionMode.Callback {
 
         final String mimeType = MenuExecutor.getMimeType(type);
         if (paths.size() == 1) {
-            if (!GalleryUtils.isEditorAvailable((Context) mActivity, mimeType)) {
-                operation &= ~MediaObject.SUPPORT_EDIT;
-            }
+//            if (!GalleryUtils.isEditorAvailable((Context) mActivity, mimeType)) {
+            operation &= ~MediaObject.SUPPORT_EDIT;
+//            }
         } else {
             operation &= SUPPORT_MULTIPLE_MASK;
         }

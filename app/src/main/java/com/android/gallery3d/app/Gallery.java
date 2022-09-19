@@ -31,7 +31,6 @@ import com.android.gallery3d.data.DataManager;
 import com.android.gallery3d.data.MediaItem;
 import com.android.gallery3d.data.MediaSet;
 import com.android.gallery3d.data.Path;
-import com.android.gallery3d.picasasource.PicasaSource;
 import com.android.gallery3d.ui.GLRoot;
 import com.android.gallery3d.util.GalleryUtils;
 import com.chanapps.four.gallery3d.R;
@@ -91,7 +90,7 @@ public final class Gallery extends AbstractGalleryActivity {
     }
 
     public void startDefaultPage() {
-        PicasaSource.showSignInReminder(this);
+//        PicasaSource.showSignInReminder(this);
         Bundle data = new Bundle();
         data.putString(AlbumSetPage.KEY_MEDIA_PATH, getDataManager().getTopSetPath(DataManager.INCLUDE_ALL));
         getStateManager().startState(AlbumSetPage.class, data);

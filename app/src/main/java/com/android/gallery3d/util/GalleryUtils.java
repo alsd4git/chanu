@@ -21,22 +21,16 @@ import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ConditionVariable;
 import android.os.Environment;
 import android.os.StatFs;
-import android.preference.PreferenceManager;
-import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
 import com.android.gallery3d.app.GalleryActivity;
-import com.android.gallery3d.app.PackagesMonitor;
 import com.android.gallery3d.data.DataManager;
 import com.android.gallery3d.data.MediaItem;
 import com.android.gallery3d.util.ThreadPool.CancelListener;
@@ -45,7 +39,6 @@ import com.chanapps.four.component.URLFormatComponent;
 import com.chanapps.four.gallery3d.R;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
 public class GalleryUtils {
@@ -165,32 +158,32 @@ public class GalleryUtils {
         jc.setCancelListener(null);
     }
 
-    public static boolean isEditorAvailable(Context context, String mimeType) {
-        int version = PackagesMonitor.getPackagesVersion(context);
+//    public static boolean isEditorAvailable(Context context, String mimeType) {
+//        int version = PackagesMonitor.getPackagesVersion(context);
+//
+//        String updateKey = PREFIX_PHOTO_EDITOR_UPDATE + mimeType;
+//        String hasKey = PREFIX_HAS_PHOTO_EDITOR + mimeType;
+//
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+//        if (prefs.getInt(updateKey, 0) != version) {
+//            PackageManager packageManager = context.getPackageManager();
+//            List<ResolveInfo> infos = packageManager.queryIntentActivities(new Intent(Intent.ACTION_EDIT).setType(mimeType), 0);
+//            prefs.edit().putInt(updateKey, version).putBoolean(hasKey, !infos.isEmpty()).commit();
+//        }
+//
+//        return prefs.getBoolean(hasKey, true);
+//    }
 
-        String updateKey = PREFIX_PHOTO_EDITOR_UPDATE + mimeType;
-        String hasKey = PREFIX_HAS_PHOTO_EDITOR + mimeType;
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getInt(updateKey, 0) != version) {
-            PackageManager packageManager = context.getPackageManager();
-            List<ResolveInfo> infos = packageManager.queryIntentActivities(new Intent(Intent.ACTION_EDIT).setType(mimeType), 0);
-            prefs.edit().putInt(updateKey, version).putBoolean(hasKey, !infos.isEmpty()).commit();
-        }
-
-        return prefs.getBoolean(hasKey, true);
-    }
-
-    public static boolean isCameraAvailable(Context context) {
-        int version = PackagesMonitor.getPackagesVersion(context);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (prefs.getInt(KEY_CAMERA_UPDATE, 0) != version) {
-            PackageManager packageManager = context.getPackageManager();
-            List<ResolveInfo> infos = packageManager.queryIntentActivities(new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA), 0);
-            prefs.edit().putInt(KEY_CAMERA_UPDATE, version).putBoolean(KEY_HAS_CAMERA, !infos.isEmpty()).commit();
-        }
-        return prefs.getBoolean(KEY_HAS_CAMERA, true);
-    }
+//    public static boolean isCameraAvailable(Context context) {
+//        int version = PackagesMonitor.getPackagesVersion(context);
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+//        if (prefs.getInt(KEY_CAMERA_UPDATE, 0) != version) {
+//            PackageManager packageManager = context.getPackageManager();
+//            List<ResolveInfo> infos = packageManager.queryIntentActivities(new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA), 0);
+//            prefs.edit().putInt(KEY_CAMERA_UPDATE, version).putBoolean(KEY_HAS_CAMERA, !infos.isEmpty()).commit();
+//        }
+//        return prefs.getBoolean(KEY_HAS_CAMERA, true);
+//    }
 
     public static boolean isValidLocation(double latitude, double longitude) {
         // TODO: change || to && after we fix the default location issue
