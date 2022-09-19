@@ -100,7 +100,6 @@
     <string name="no_albums_alert" msgid="4111744447491690896">"Nu există albume disponibile."</string>
     <string name="empty_album" msgid="4542880442593595494">"Nu există imagini/videoclipuri disponibile."</string>
     <string name="picasa_posts" msgid="1497721615718760613">"Postări"</string>
-    <string name="make_available_offline" msgid="5157950985488297112">"Faceţi-le disponibile offline"</string>
     <string name="sync_picasa_albums" msgid="8522572542111169872">"Actualizaţi"</string>
     <string name="done" msgid="217672440064436595">"Terminat"</string>
     <string name="sequence_in_set" msgid="7235465319919457488">"%1$d din %2$d (de) elemente:"</string>

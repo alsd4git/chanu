@@ -100,7 +100,6 @@
     <string name="no_albums_alert" msgid="4111744447491690896">"कोई एल्‍बम उपलब्‍ध नहीं."</string>
     <string name="empty_album" msgid="4542880442593595494">"O छवियां/वीडियो उपलब्‍ध."</string>
     <string name="picasa_posts" msgid="1497721615718760613">"पोस्ट"</string>
-    <string name="make_available_offline" msgid="5157950985488297112">"ऑफ़लाइन उपलब्ध कराएं"</string>
     <string name="sync_picasa_albums" msgid="8522572542111169872">"रीफ्रेश करें"</string>
     <string name="done" msgid="217672440064436595">"पूर्ण"</string>
     <string name="sequence_in_set" msgid="7235465319919457488">"%2$d में से %1$d आइटम:"</string>

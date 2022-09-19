@@ -16,15 +16,11 @@
 
 package com.android.gallery3d.data;
 
-import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.BitmapRegionDecoder;
-import android.graphics.Rect;
-import android.net.Uri;
-import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
 import com.android.gallery3d.common.BitmapUtils;
@@ -34,26 +30,9 @@ import com.android.gallery3d.util.ThreadPool.JobContext;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
-import java.io.InputStream;
 
 public class DecodeUtils {
     private static final String TAG = "DecodeService";
-
-    public static Bitmap requestDecode(JobContext jc, final String filePath, Options options) {
-        if (options == null) options = new Options();
-        jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(BitmapFactory.decodeFile(filePath, options));
-    }
-
-    public static Bitmap requestDecode(JobContext jc, FileDescriptor fd, Options options) {
-        if (options == null) options = new Options();
-        jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(BitmapFactory.decodeFileDescriptor(fd, null, options));
-    }
-
-    public static Bitmap requestDecode(JobContext jc, byte[] bytes, Options options) {
-        return requestDecode(jc, bytes, 0, bytes.length, options);
-    }
 
     public static Bitmap requestDecode(JobContext jc, byte[] bytes, int offset, int length, Options options) {
         if (options == null) options = new Options();
@@ -115,12 +94,6 @@ public class DecodeUtils {
         return ensureGLCompatibleBitmap(BitmapFactory.decodeByteArray(data, 0, data.length, options));
     }
 
-    public static Bitmap requestDecode(JobContext jc, FileDescriptor fileDescriptor, Rect paddings, Options options) {
-        if (options == null) options = new Options();
-        jc.setCancelListener(new DecodeCanceller(options));
-        return ensureGLCompatibleBitmap(BitmapFactory.decodeFileDescriptor(fileDescriptor, paddings, options));
-    }
-
     // TODO: This function should not be called directly from
     // DecodeUtils.requestDecode(...), since we don't have the knowledge
     // if the bitmap will be uploaded to GL.
@@ -129,19 +102,6 @@ public class DecodeUtils {
         Bitmap newBitmap = bitmap.copy(Config.ARGB_8888, false);
         bitmap.recycle();
         return newBitmap;
-    }
-
-    public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(JobContext jc, byte[] bytes, int offset, int length, boolean shareable) {
-        if (offset < 0 || length <= 0 || offset + length > bytes.length) {
-            throw new IllegalArgumentException(String.format("offset = %s, length = %s, bytes = %s", offset, length, bytes.length));
-        }
-
-        try {
-            return BitmapRegionDecoder.newInstance(bytes, offset, length, shareable);
-        } catch (Throwable t) {
-            Log.w(TAG, t);
-            return null;
-        }
     }
 
     public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(JobContext jc, String filePath, boolean shareable) {
@@ -159,30 +119,6 @@ public class DecodeUtils {
         } catch (Throwable t) {
             Log.w(TAG, t);
             return null;
-        }
-    }
-
-    public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(JobContext jc, InputStream is, boolean shareable) {
-        try {
-            return BitmapRegionDecoder.newInstance(is, shareable);
-        } catch (Throwable t) {
-            // We often cancel the creating of bitmap region decoder,
-            // so just log one line.
-            Log.w(TAG, "requestCreateBitmapRegionDecoder: " + t);
-            return null;
-        }
-    }
-
-    public static BitmapRegionDecoder requestCreateBitmapRegionDecoder(JobContext jc, Uri uri, ContentResolver resolver, boolean shareable) {
-        ParcelFileDescriptor pfd = null;
-        try {
-            pfd = resolver.openFileDescriptor(uri, "r");
-            return BitmapRegionDecoder.newInstance(pfd.getFileDescriptor(), shareable);
-        } catch (Throwable t) {
-            Log.w(TAG, t);
-            return null;
-        } finally {
-            Utils.closeSilently(pfd);
         }
     }
 

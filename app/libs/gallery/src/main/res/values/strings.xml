@@ -71,7 +71,6 @@
     <string name="no_albums_alert">No albums available.</string>
     <string name="empty_album">O images/videos available.</string>
     <string name="picasa_posts">Posts</string>
-    <string name="make_available_offline">Make available offline</string>
     <string name="sync_picasa_albums">Refresh</string>
     <string name="done">Done</string>
     <string name="sequence_in_set">%1$d of %2$d items:</string>

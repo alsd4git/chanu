@@ -100,7 +100,6 @@
     <string name="no_albums_alert" msgid="4111744447491690896">"使用できるアルバムはありません。"</string>
     <string name="empty_album" msgid="4542880442593595494">"使用できる画像/動画: 0件"</string>
     <string name="picasa_posts" msgid="1497721615718760613">"投稿"</string>
-    <string name="make_available_offline" msgid="5157950985488297112">"オフラインで使用する"</string>
     <string name="sync_picasa_albums" msgid="8522572542111169872">"更新"</string>
     <string name="done" msgid="217672440064436595">"完了"</string>
     <string name="sequence_in_set" msgid="7235465319919457488">"%1$d/%2$d件:"</string>

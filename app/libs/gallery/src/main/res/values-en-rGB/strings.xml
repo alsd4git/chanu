@@ -100,7 +100,6 @@
     <string name="no_albums_alert" msgid="4111744447491690896">"No albums available."</string>
     <string name="empty_album" msgid="4542880442593595494">"O images/videos available."</string>
     <string name="picasa_posts" msgid="1497721615718760613">"Posts"</string>
-    <string name="make_available_offline" msgid="5157950985488297112">"Make available offline"</string>
     <string name="sync_picasa_albums" msgid="8522572542111169872">"Refresh"</string>
     <string name="done" msgid="217672440064436595">"Done"</string>
     <string name="sequence_in_set" msgid="7235465319919457488">"%1$d of %2$d items:"</string>

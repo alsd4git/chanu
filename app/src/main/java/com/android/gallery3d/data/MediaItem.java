@@ -60,9 +60,9 @@ public abstract class MediaItem extends MediaObject {
         return null;
     }
 
-    public Face[] getFaces() {
-        return null;
-    }
+//    public Face[] getFaces() {
+//        return null;
+//    }
 
     // The rotation of the full-resolution image. By default, it returns the value of
     // getRotation().
