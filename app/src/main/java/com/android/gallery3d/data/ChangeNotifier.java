@@ -33,19 +33,6 @@ public class ChangeNotifier {
         application.getDataManager().registerChangeNotifier(uri, this);
     }
 
-    // Returns the dirty flag and clear it.
-    public boolean isDirty() {
-        return mContentDirty.compareAndSet(true, false);
-    }
-
-    public void fakeChange() {
-        onChange(false);
-    }
-
-    public void clearDirty() {
-        mContentDirty.set(false);
-    }
-
     protected void onChange(boolean selfChange) {
         if (mContentDirty.compareAndSet(false, true)) {
             mMediaSet.notifyContentChanged();

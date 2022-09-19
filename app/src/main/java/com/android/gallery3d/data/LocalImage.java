@@ -16,7 +16,6 @@
 
 package com.android.gallery3d.data;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -86,26 +85,6 @@ public class LocalImage extends LocalMediaItem {
         super(path, nextVersionNumber());
         mApplication = application;
         loadFromCursor(cursor);
-    }
-
-    public LocalImage(Path path, GalleryApp application, int id) {
-        super(path, nextVersionNumber());
-        mApplication = application;
-        ContentResolver resolver = mApplication.getContentResolver();
-        Uri uri = Images.Media.EXTERNAL_CONTENT_URI;
-        Cursor cursor = LocalAlbum.getItemCursor(resolver, uri, PROJECTION, id);
-        if (cursor == null) {
-            throw new RuntimeException("cannot get cursor for: " + path);
-        }
-        try {
-            if (cursor.moveToNext()) {
-                loadFromCursor(cursor);
-            } else {
-                throw new RuntimeException("cannot find data for: " + path);
-            }
-        } finally {
-            cursor.close();
-        }
     }
 
     static int getTargetSize(int type) {
