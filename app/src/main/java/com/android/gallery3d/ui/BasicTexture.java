@@ -32,8 +32,8 @@ abstract class BasicTexture implements Texture {
     protected static final int STATE_ERROR = -1;
     @SuppressWarnings("unused")
     private static final String TAG = "BasicTexture";
-    private static WeakHashMap<BasicTexture, Object> sAllTextures = new WeakHashMap<BasicTexture, Object>();
-    private static ThreadLocal sInFinalizer = new ThreadLocal();
+    private static final WeakHashMap<BasicTexture, Object> sAllTextures = new WeakHashMap<BasicTexture, Object>();
+    private static final ThreadLocal sInFinalizer = new ThreadLocal();
     protected int mId;
     protected int mState;
     protected int mWidth = UNSPECIFIED;

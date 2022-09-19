@@ -34,15 +34,19 @@ public class FilmStripView extends GLView implements ScrollBarView.Listener, Use
     private static final String TAG = "FilmStripView";
 
     private static final int HIDE_ANIMATION_DURATION = 300;  // 0.3 sec
-    private int mTopMargin, mMidMargin, mBottomMargin;
-    private int mContentSize, mBarSize, mGripSize;
-    private AlbumView mAlbumView;
-    private ScrollBarView mScrollBarView;
-    private AlbumDataAdapter mAlbumDataAdapter;
-    private StripDrawer mStripDrawer;
+    private final int mTopMargin;
+    private final int mMidMargin;
+    private final int mBottomMargin;
+    private final int mContentSize;
+    private final int mBarSize;
+    private final int mGripSize;
+    private final AlbumView mAlbumView;
+    private final ScrollBarView mScrollBarView;
+    private final AlbumDataAdapter mAlbumDataAdapter;
+    private final StripDrawer mStripDrawer;
     private Listener mListener;
     private UserInteractionListener mUIListener;
-    private NinePatchTexture mBackgroundTexture;
+    private final NinePatchTexture mBackgroundTexture;
 
     // The layout of FileStripView is
     // topMargin

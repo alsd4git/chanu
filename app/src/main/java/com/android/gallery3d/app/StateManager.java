@@ -38,8 +38,8 @@ public class StateManager {
     private static final String KEY_CLASS = "class";
     private static final String KEY_LAUNCH_GALLERY_ON_TOP = "launch-gallery-on-top";
     private boolean mIsResumed = false;
-    private GalleryActivity mContext;
-    private Stack<StateEntry> mStack = new Stack<StateEntry>();
+    private final GalleryActivity mContext;
+    private final Stack<StateEntry> mStack = new Stack<StateEntry>();
     private ActivityState.ResultEntry mResult;
     private boolean mLaunchGalleryOnTop = false;
 

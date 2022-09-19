@@ -30,7 +30,7 @@ import com.chanapps.four.widget.PhotoAppWidgetConfigure;
 
 public class WidgetTypeChooser extends Activity {
 
-    private OnCheckedChangeListener mListener = new OnCheckedChangeListener() {
+    private final OnCheckedChangeListener mListener = new OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             Intent data = new Intent().putExtra(PhotoAppWidgetConfigure.KEY_WIDGET_TYPE, checkedId);

@@ -55,8 +55,8 @@ class PositionController {
     private long mAnimationStartTime = NO_ANIMATION;
     private int mAnimationKind;
     private float mAnimationDuration;
-    private PhotoView mViewer;
-    private EdgeView mEdgeView;
+    private final PhotoView mViewer;
+    private final EdgeView mEdgeView;
     private int mImageW, mImageH;
     private int mViewW, mViewH;
     // The X, Y are the coordinate on bitmap which shows on the center of
@@ -70,17 +70,18 @@ class PositionController {
     private int mFocusBitmapY;
     private boolean mInScale;
     // The minimum and maximum scale we allow.
-    private float mScaleMin, mScaleMax = SCALE_LIMIT;
+    private float mScaleMin;
+    private final float mScaleMax = SCALE_LIMIT;
     // This is used by the fling animation
-    private FlingScroller mScroller;
+    private final FlingScroller mScroller;
     // The bound of the stable region, see the comments above
     // calculateStableBound() for details.
     private int mBoundLeft, mBoundRight, mBoundTop, mBoundBottom;
     // Assume the image size is the same as view size before we know the actual
     // size of image.
     private boolean mUseViewSize = true;
-    private RectF mTempRect = new RectF();
-    private float[] mTempPoints = new float[8];
+    private final RectF mTempRect = new RectF();
+    private final float[] mTempPoints = new float[8];
 
     public PositionController(PhotoView viewer, Context context, EdgeView edgeView) {
         mViewer = viewer;

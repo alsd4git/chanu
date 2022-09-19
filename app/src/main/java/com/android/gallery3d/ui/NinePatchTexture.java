@@ -41,7 +41,7 @@ public class NinePatchTexture extends ResourceTexture {
     @SuppressWarnings("unused")
     private static final String TAG = "NinePatchTexture";
     private NinePatchChunk mChunk;
-    private MyCacheMap<Long, NinePatchInstance> mInstanceCache = new MyCacheMap<Long, NinePatchInstance>();
+    private final MyCacheMap<Long, NinePatchInstance> mInstanceCache = new MyCacheMap<Long, NinePatchInstance>();
 
     public NinePatchTexture(Context context, int resId) {
         super(context, resId);
@@ -131,7 +131,7 @@ public class NinePatchTexture extends ResourceTexture {
     }
 
     private static class MyCacheMap<K, V> extends LinkedHashMap<K, V> {
-        private int CACHE_SIZE = 16;
+        private final int CACHE_SIZE = 16;
         private V mJustRemoved;
 
         public MyCacheMap() {

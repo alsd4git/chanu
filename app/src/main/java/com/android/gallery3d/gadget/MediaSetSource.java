@@ -34,8 +34,8 @@ public class MediaSetSource implements WidgetSource, ContentListener {
 
     private static final String TAG = "MediaSetSource";
 
-    private MediaSet mSource;
-    private MediaItem[] mCache = new MediaItem[CACHE_SIZE];
+    private final MediaSet mSource;
+    private final MediaItem[] mCache = new MediaItem[CACHE_SIZE];
     private int mCacheStart;
     private int mCacheEnd;
     private long mSourceVersion = MediaObject.INVALID_DATA_VERSION;

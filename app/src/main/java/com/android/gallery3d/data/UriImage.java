@@ -54,7 +54,7 @@ public class UriImage extends MediaItem {
     private int mWidth;
     private int mHeight;
 
-    private GalleryApp mApplication;
+    private final GalleryApp mApplication;
 
     public UriImage(GalleryApp application, Path path, Uri uri) {
         super(path, nextVersionNumber());
@@ -239,7 +239,7 @@ public class UriImage extends MediaItem {
     }
 
     private class BitmapJob implements Job<Bitmap> {
-        private int mType;
+        private final int mType;
 
         protected BitmapJob(int type) {
             mType = type;

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public abstract class MediaSource {
     private static final String TAG = "MediaSource";
-    private String mPrefix;
+    private final String mPrefix;
 
     protected MediaSource(String prefix) {
         mPrefix = prefix;

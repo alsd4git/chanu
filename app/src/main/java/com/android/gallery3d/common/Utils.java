@@ -41,7 +41,7 @@ public class Utils {
     private static final long INITIALCRC = 0xFFFFFFFFFFFFFFFFL;
     private static final boolean IS_DEBUG_BUILD = Build.TYPE.equals("eng") || Build.TYPE.equals("userdebug");
     private static final String MASK_STRING = "********************************";
-    private static long[] sCrcTable = new long[256];
+    private static final long[] sCrcTable = new long[256];
 
     static {
         long part;

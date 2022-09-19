@@ -65,7 +65,7 @@ public abstract class MediaSet extends MediaObject {
         public void waitDone() {
         }
     };
-    private WeakHashMap<ContentListener, Object> mListeners = new WeakHashMap<ContentListener, Object>();
+    private final WeakHashMap<ContentListener, Object> mListeners = new WeakHashMap<ContentListener, Object>();
 
     public MediaSet(Path path, long version) {
         super(path, version);

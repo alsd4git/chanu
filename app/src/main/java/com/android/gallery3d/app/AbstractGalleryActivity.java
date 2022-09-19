@@ -43,16 +43,15 @@ public class AbstractGalleryActivity extends Activity implements GalleryActivity
     private static final String TAG = "AbstractGalleryActivity";
     protected GLRootView mGLRootView;
     private StateManager mStateManager;
-    private PositionRepository mPositionRepository = new PositionRepository();
+    private final PositionRepository mPositionRepository = new PositionRepository();
 
     private AlertDialog mAlertDialog = null;
-    private BroadcastReceiver mMountReceiver = new BroadcastReceiver() {
+    private final IntentFilter mMountFilter = new IntentFilter(Intent.ACTION_MEDIA_MOUNTED);    private final BroadcastReceiver mMountReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (getExternalCacheDir() != null) onStorageReady();
         }
     };
-    private IntentFilter mMountFilter = new IntentFilter(Intent.ACTION_MEDIA_MOUNTED);
     private Handler handler;
 
     @Override
@@ -212,5 +211,7 @@ public class AbstractGalleryActivity extends Activity implements GalleryActivity
     public Handler getHandler() {
         return handler;
     }
+
+
 
 }

@@ -21,7 +21,7 @@ import android.view.View.MeasureSpec;
 
 class MeasureHelper {
 
-    private static MeasureHelper sInstance = new MeasureHelper(null);
+    private static final MeasureHelper sInstance = new MeasureHelper(null);
 
     private GLView mComponent;
     private int mPreferredWidth;

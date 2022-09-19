@@ -51,12 +51,12 @@ public class AlbumSlidingWindow implements AlbumView.ModelListener {
     private Listener mListener;
     private int mFocusIndex = -1;
     private SelectionDrawer mSelectionDrawer;
-    private SynchronizedHandler mHandler;
-    private JobLimiter mThreadPool;
+    private final SynchronizedHandler mHandler;
+    private final JobLimiter mThreadPool;
     private int mActiveRequestCount = 0;
     private boolean mIsActive = false;
     private int mCacheThumbSize;  // 0: Don't cache the thumbnails
-    private LruCache<Path, Bitmap> mImageCache = new LruCache<Path, Bitmap>(1000);
+    private final LruCache<Path, Bitmap> mImageCache = new LruCache<Path, Bitmap>(1000);
 
     public AlbumSlidingWindow(GalleryActivity activity, AlbumView.Model source, int cacheSize, int cacheThumbSize) {
         source.setModelListener(this);
@@ -292,7 +292,7 @@ public class AlbumSlidingWindow implements AlbumView.ModelListener {
         private final int mMediaType;
         private Future<Bitmap> mFuture;
         private Texture mContent;
-        private boolean mIsPanorama;
+        private final boolean mIsPanorama;
         private boolean mWaitLoadingDisplayed;
 
         public AlbumDisplayItem(int slotIndex, MediaItem item) {

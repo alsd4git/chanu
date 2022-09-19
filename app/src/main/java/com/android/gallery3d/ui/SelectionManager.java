@@ -32,12 +32,12 @@ public class SelectionManager {
     public static final int SELECT_ALL_MODE = 3;
     @SuppressWarnings("unused")
     private static final String TAG = "SelectionManager";
-    private Set<Path> mClickedSet;
+    private final Set<Path> mClickedSet;
     private MediaSet mSourceMediaSet;
     private SelectionListener mListener;
-    private DataManager mDataManager;
+    private final DataManager mDataManager;
     private boolean mInverseSelection;
-    private boolean mIsAlbumSet;
+    private final boolean mIsAlbumSet;
     private boolean mInSelectionMode;
     private boolean mAutoLeave = true;
     private int mTotal;

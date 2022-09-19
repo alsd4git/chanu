@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class CacheManager {
     private static final String TAG = "CacheManager";
     private static final String KEY_CACHE_UP_TO_DATE = "cache-up-to-date";
-    private static HashMap<String, BlobCache> sCacheMap = new HashMap<String, BlobCache>();
+    private static final HashMap<String, BlobCache> sCacheMap = new HashMap<String, BlobCache>();
     private static boolean sOldCheckDone = false;
 
     // Return null when we cannot instantiate a BlobCache, e.g.:

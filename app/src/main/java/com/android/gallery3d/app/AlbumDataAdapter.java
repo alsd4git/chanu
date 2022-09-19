@@ -59,7 +59,7 @@ public class AlbumDataAdapter implements AlbumView.Model {
     private int mSize = 0;
 
     private AlbumView.ModelListener mModelListener;
-    private MySourceListener mSourceListener = new MySourceListener();
+    private final MySourceListener mSourceListener = new MySourceListener();
     private LoadingListener mLoadingListener;
 
     private ReloadTask mReloadTask;
@@ -240,7 +240,7 @@ public class AlbumDataAdapter implements AlbumView.Model {
 
     private class UpdateContent implements Callable<Void> {
 
-        private UpdateInfo mUpdateInfo;
+        private final UpdateInfo mUpdateInfo;
 
         public UpdateContent(UpdateInfo info) {
             mUpdateInfo = info;

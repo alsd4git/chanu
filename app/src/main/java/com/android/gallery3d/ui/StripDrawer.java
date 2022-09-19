@@ -23,9 +23,9 @@ import com.android.gallery3d.data.Path;
 import com.chanapps.four.gallery3d.R;
 
 public class StripDrawer extends SelectionDrawer {
-    private NinePatchTexture mFramePressed;
-    private NinePatchTexture mFocusBox;
-    private Rect mFocusBoxPadding;
+    private final NinePatchTexture mFramePressed;
+    private final NinePatchTexture mFocusBox;
+    private final Rect mFocusBoxPadding;
     private Path mPressedPath;
 
     public StripDrawer(Context context) {

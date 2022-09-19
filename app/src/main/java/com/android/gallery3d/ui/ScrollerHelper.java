@@ -23,8 +23,8 @@ import android.widget.OverScroller;
 import com.android.gallery3d.common.Utils;
 
 public class ScrollerHelper {
-    private OverScroller mScroller;
-    private int mOverflingDistance;
+    private final OverScroller mScroller;
+    private final int mOverflingDistance;
     private boolean mOverflingEnabled;
 
     public ScrollerHelper(Context context) {

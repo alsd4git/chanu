@@ -68,10 +68,10 @@ public class DataManager {
     private static final String TOP_LOCAL_IMAGE_SET_PATH = "/local/image";
     private static final String TOP_LOCAL_VIDEO_SET_PATH = "/local/video";
     private final Handler mDefaultMainHandler;
-    private GalleryApp mApplication;
+    private final GalleryApp mApplication;
     private int mActiveCount = 0;
-    private HashMap<Uri, NotifyBroker> mNotifierMap = new HashMap<Uri, NotifyBroker>();
-    private HashMap<String, MediaSource> mSourceMap = new LinkedHashMap<String, MediaSource>();
+    private final HashMap<Uri, NotifyBroker> mNotifierMap = new HashMap<Uri, NotifyBroker>();
+    private final HashMap<String, MediaSource> mSourceMap = new LinkedHashMap<String, MediaSource>();
 
 
     public DataManager(GalleryApp application) {
@@ -292,7 +292,7 @@ public class DataManager {
     }
 
     private static class NotifyBroker extends ContentObserver {
-        private WeakHashMap<ChangeNotifier, Object> mNotifiers = new WeakHashMap<ChangeNotifier, Object>();
+        private final WeakHashMap<ChangeNotifier, Object> mNotifiers = new WeakHashMap<ChangeNotifier, Object>();
 
         public NotifyBroker(Handler handler) {
             super(handler);

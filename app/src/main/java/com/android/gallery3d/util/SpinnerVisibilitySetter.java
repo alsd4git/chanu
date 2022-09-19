@@ -50,10 +50,10 @@ public class SpinnerVisibilitySetter {
     // The minimum amount of time the progress spinner must be visible before it
     // can be hidden.
     private static final long MIN_SPINNER_DISPLAY_TIME = 2000;
+    private final Activity mActivity;
     private boolean mPendingVisibilityRequest = false;
     private boolean mActiveVisibilityRequest = false;
     private long mSpinnerVisibilityStartTime;
-    private Activity mActivity;
     Handler mHandler = new Handler() {
 
         @Override

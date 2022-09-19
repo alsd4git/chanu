@@ -24,7 +24,7 @@ public abstract class IconDrawer extends SelectionDrawer {
     private static final String TAG = "IconDrawer";
     private static final int LABEL_BACKGROUND_COLOR = 0x99000000;  // 60% black
 
-//    private final ResourceTexture mLocalSetIcon;
+    //    private final ResourceTexture mLocalSetIcon;
 //    private final ResourceTexture mCameraIcon;
 //    private final ResourceTexture mPicasaIcon;
 //    private final ResourceTexture mMtpIcon;

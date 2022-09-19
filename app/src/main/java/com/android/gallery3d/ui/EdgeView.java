@@ -34,8 +34,8 @@ public class EdgeView extends GLView {
     private static final int BOTTOM_M = BOTTOM * 16;
     private static final int RIGHT_M = RIGHT * 16;
 
-    private EdgeEffect[] mEffect = new EdgeEffect[4];
-    private float[] mMatrix = new float[4 * 16];
+    private final EdgeEffect[] mEffect = new EdgeEffect[4];
+    private final float[] mMatrix = new float[4 * 16];
 
     public EdgeView(Context context) {
         for (int i = 0; i < 4; i++) {

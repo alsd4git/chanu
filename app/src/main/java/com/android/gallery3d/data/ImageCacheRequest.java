@@ -30,9 +30,9 @@ public abstract class ImageCacheRequest implements Job<Bitmap> {
     private static final String TAG = "ImageCacheRequest";
 
     protected GalleryApp mApplication;
-    private Path mPath;
-    private int mType;
-    private int mTargetSize;
+    private final Path mPath;
+    private final int mType;
+    private final int mTargetSize;
 
     public ImageCacheRequest(GalleryApp application, Path path, int type, int targetSize) {
         mApplication = application;

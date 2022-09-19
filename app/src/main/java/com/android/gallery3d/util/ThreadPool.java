@@ -96,8 +96,8 @@ public class ThreadPool {
 
     private class Worker<T> implements Runnable, Future<T>, JobContext {
         private static final String TAG = "Worker";
-        private Job<T> mJob;
-        private FutureListener<T> mListener;
+        private final Job<T> mJob;
+        private final FutureListener<T> mListener;
         private CancelListener mCancelListener;
         private ResourceCounter mWaitOnResource;
         private volatile boolean mIsCancelled;

@@ -20,7 +20,7 @@ import android.content.Context;
 import com.android.gallery3d.data.Path;
 
 public class HighlightDrawer extends IconDrawer {
-    private SelectionManager mSelectionManager;
+    private final SelectionManager mSelectionManager;
     private Path mHighlightItem;
 
     public HighlightDrawer(Context context, SelectionManager selectionManager) {

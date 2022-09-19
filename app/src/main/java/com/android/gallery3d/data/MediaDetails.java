@@ -52,8 +52,8 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
     public static final int INDEX_PATH = 200;
     @SuppressWarnings("unused")
     private static final String TAG = "MediaDetails";
-    private TreeMap<Integer, Object> mDetails = new TreeMap<Integer, Object>();
-    private HashMap<Integer, Integer> mUnits = new HashMap<Integer, Integer>();
+    private final TreeMap<Integer, Object> mDetails = new TreeMap<Integer, Object>();
+    private final HashMap<Integer, Integer> mUnits = new HashMap<Integer, Integer>();
 
     private static void setExifData(MediaDetails details, ExifInterface exif, String tag, int key) {
         String value = exif.getAttribute(tag);
@@ -120,12 +120,12 @@ public class MediaDetails implements Iterable<Entry<Integer, Object>> {
     }
 
     public static class FlashState {
-        private static int FLASH_FIRED_MASK = 1;
-        private static int FLASH_RETURN_MASK = 2 | 4;
-        private static int FLASH_MODE_MASK = 8 | 16;
-        private static int FLASH_FUNCTION_MASK = 32;
-        private static int FLASH_RED_EYE_MASK = 64;
-        private int mState;
+        private static final int FLASH_FIRED_MASK = 1;
+        private static final int FLASH_RETURN_MASK = 2 | 4;
+        private static final int FLASH_MODE_MASK = 8 | 16;
+        private static final int FLASH_FUNCTION_MASK = 32;
+        private static final int FLASH_RED_EYE_MASK = 64;
+        private final int mState;
 
         public FlashState(int state) {
             mState = state;

@@ -85,7 +85,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     private static final int REQUEST_SLIDESHOW = 1;
     private static final int REQUEST_CROP = 2;
     private static final int REQUEST_CROP_PICASA = 3;
-    private static boolean DEBUG = false;
+    private static final boolean DEBUG = false;
     private GalleryApp mApplication;
     private SelectionManager mSelectionManager;
     private PhotoView mPhotoView;
@@ -97,7 +97,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     // E.g., viewing a photo in gmail attachment
     private MediaSet mMediaSet;
     private Menu mMenu;
-    private Intent mResultIntent = new Intent();
+    private final Intent mResultIntent = new Intent();
     private int mCurrentIndex = 0;
     private Handler mHandler;
     private boolean mShowBars = true;
@@ -109,7 +109,7 @@ public class PhotoPage extends ActivityState implements PhotoView.PhotoTapListen
     private MediaItem mCurrentPhoto = null;
     private MenuExecutor mMenuExecutor;
     private boolean mIsActive;
-    private GLView mRootPane = new GLView() {
+    private final GLView mRootPane = new GLView() {
 
         @Override
         protected void renderBackground(GLCanvas view) {

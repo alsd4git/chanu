@@ -36,12 +36,12 @@ public class GalleryActionBar implements ActionBar.OnNavigationListener {
     private ClusterRunner mClusterRunner;
     //private CharSequence[] mTitles;
     //private ArrayList<Integer> mActions;
-    private Context mContext;
-    private LayoutInflater mInflater;
-    private GalleryActivity mActivity;
-    private ActionBar mActionBar;
-    private int mCurrentIndex;
-    private ClusterAdapter mAdapter = new ClusterAdapter();
+    private final Context mContext;
+    private final LayoutInflater mInflater;
+    private final GalleryActivity mActivity;
+    private final ActionBar mActionBar;
+    private final int mCurrentIndex;
+    private final ClusterAdapter mAdapter = new ClusterAdapter();
 
     public GalleryActionBar(GalleryActivity activity) {
         mActionBar = ((Activity) activity).getActionBar();

@@ -29,7 +29,7 @@ public class UriSource extends MediaSource {
     @SuppressWarnings("unused")
     private static final String TAG = "UriSource";
 
-    private GalleryApp mApplication;
+    private final GalleryApp mApplication;
 
     public UriSource(GalleryApp context) {
         super("uri");
@@ -62,7 +62,7 @@ public class UriSource extends MediaSource {
             try {
                 encoded = URLEncoder.encode(uri.toString(), "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                Log.e(TAG, "Unsupported encoding for url:" + uri.toString());
+                Log.e(TAG, "Unsupported encoding for url:" + uri);
                 encoded = uri.toString();
             }
             return Path.fromString("/uri/" + encoded);

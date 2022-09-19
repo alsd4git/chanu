@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class PathMatcher {
     public static final int NOT_FOUND = -1;
 
-    private ArrayList<String> mVariables = new ArrayList<String>();
+    private final ArrayList<String> mVariables = new ArrayList<String>();
     private Node mRoot = new Node();
 
     public PathMatcher() {

@@ -51,7 +51,7 @@ public class ActionModeHandler implements ActionMode.Callback {
     private DropDownMenu mSelectionMenu;
     private ActionModeListener mListener;
     private Future<?> mMenuTask;
-    private Handler mMainHandler;
+    private final Handler mMainHandler;
 
     public ActionModeHandler(GalleryActivity activity, SelectionManager selectionManager) {
         mActivity = Utils.checkNotNull(activity);

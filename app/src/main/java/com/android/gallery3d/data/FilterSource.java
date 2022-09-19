@@ -22,8 +22,8 @@ class FilterSource extends MediaSource {
     private static final String TAG = "FilterSource";
     private static final int FILTER_BY_MEDIATYPE = 0;
 
-    private GalleryApp mApplication;
-    private PathMatcher mMatcher;
+    private final GalleryApp mApplication;
+    private final PathMatcher mMatcher;
 
     public FilterSource(GalleryApp application) {
         super("filter");

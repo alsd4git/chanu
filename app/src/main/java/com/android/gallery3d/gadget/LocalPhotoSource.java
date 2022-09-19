@@ -54,12 +54,12 @@ public class LocalPhotoSource implements WidgetSource {
     private static final String SELECTION = String.format("%s != %s", Media.BUCKET_ID, getDownloadBucketId());
     private static final String ORDER = String.format("%s DESC", DATE_TAKEN);
     private static final Path LOCAL_IMAGE_ROOT = Path.fromString("/local/image/item");
-    private Context mContext;
-    private ArrayList<Long> mPhotos = new ArrayList<Long>();
+    private final Context mContext;
+    private final ArrayList<Long> mPhotos = new ArrayList<Long>();
     private ContentListener mContentListener;
-    private ContentObserver mContentObserver;
+    private final ContentObserver mContentObserver;
     private boolean mContentDirty = true;
-    private DataManager mDataManager;
+    private final DataManager mDataManager;
 
     public LocalPhotoSource(Context context) {
         mContext = context;
@@ -142,7 +142,7 @@ public class LocalPhotoSource implements WidgetSource {
             if (builder.length() > 0) builder.append(",");
             builder.append(imageId);
         }
-        Cursor cursor = mContext.getContentResolver().query(CONTENT_URI, COUNT_PROJECTION, String.format("%s in (%s)", Media._ID, builder.toString()), null, null);
+        Cursor cursor = mContext.getContentResolver().query(CONTENT_URI, COUNT_PROJECTION, String.format("%s in (%s)", Media._ID, builder), null, null);
         if (cursor == null) return false;
         try {
             Utils.assertTrue(cursor.moveToNext());

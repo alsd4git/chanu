@@ -26,7 +26,7 @@ import com.chanapps.four.gallery3d.R;
 
 public class DetailsHelper {
     private static DetailsAddressResolver sAddressResolver;
-    private DetailsViewContainer mContainer;
+    private final DetailsViewContainer mContainer;
 
     public DetailsHelper(GalleryActivity activity, GLView rootPane, DetailsSource source) {
         mContainer = new DialogDetailsView(activity, source);

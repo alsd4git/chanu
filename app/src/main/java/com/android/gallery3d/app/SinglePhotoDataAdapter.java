@@ -42,14 +42,14 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter implements Phot
     private static final int SIZE_BACKUP = 1024;
     private static final int MSG_UPDATE_IMAGE = 1;
 
-    private MediaItem mItem;
-    private boolean mHasFullImage;
+    private final MediaItem mItem;
+    private final boolean mHasFullImage;
     private Future<?> mTask;
-    private Handler mHandler;
+    private final Handler mHandler;
 
-    private PhotoView mPhotoView;
-    private ThreadPool mThreadPool;
-    private FutureListener<BitmapRegionDecoder> mLargeListener = new FutureListener<BitmapRegionDecoder>() {
+    private final PhotoView mPhotoView;
+    private final ThreadPool mThreadPool;
+    private final FutureListener<BitmapRegionDecoder> mLargeListener = new FutureListener<BitmapRegionDecoder>() {
         public void onFutureDone(Future<BitmapRegionDecoder> future) {
             BitmapRegionDecoder decoder = future.get();
             if (decoder == null) return;
@@ -61,7 +61,7 @@ public class SinglePhotoDataAdapter extends TileImageViewAdapter implements Phot
             mHandler.sendMessage(mHandler.obtainMessage(MSG_UPDATE_IMAGE, new ImageBundle(decoder, bitmap)));
         }
     };
-    private FutureListener<Bitmap> mThumbListener = new FutureListener<Bitmap>() {
+    private final FutureListener<Bitmap> mThumbListener = new FutureListener<Bitmap>() {
         public void onFutureDone(Future<Bitmap> future) {
             mHandler.sendMessage(mHandler.obtainMessage(MSG_UPDATE_IMAGE, future));
         }

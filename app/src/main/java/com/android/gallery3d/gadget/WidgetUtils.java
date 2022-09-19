@@ -47,7 +47,7 @@ public class WidgetUtils {
     public static Bitmap createWidgetBitmap(MediaItem image) {
         Bitmap bitmap = image.requestImage(MediaItem.TYPE_THUMBNAIL).run(ThreadPool.JOB_CONTEXT_STUB);
         if (bitmap == null) {
-            Log.w(TAG, "fail to get image of " + image.toString());
+            Log.w(TAG, "fail to get image of " + image);
             return null;
         }
         return createWidgetBitmap(bitmap, image.getRotation());

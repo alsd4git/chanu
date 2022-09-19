@@ -34,8 +34,8 @@ import java.util.ArrayList;
 public class CustomMenu implements OnMenuItemClickListener {
     @SuppressWarnings("unused")
     private static final String TAG = "FilterMenu";
-    private Context mContext;
-    private ArrayList<DropDownMenu> mMenus;
+    private final Context mContext;
+    private final ArrayList<DropDownMenu> mMenus;
     private OnMenuItemClickListener mListener;
 
     public CustomMenu(Context context) {
@@ -92,9 +92,9 @@ public class CustomMenu implements OnMenuItemClickListener {
     }
 
     public static class DropDownMenu {
-        private Button mButton;
-        private PopupMenu mPopupMenu;
-        private Menu mMenu;
+        private final Button mButton;
+        private final PopupMenu mPopupMenu;
+        private final Menu mMenu;
 
         public DropDownMenu(Context context, Button button, int menuId, OnMenuItemClickListener listener) {
             mButton = button;

@@ -20,7 +20,7 @@ import android.content.Context;
 
 public class StaticBackground extends GLView {
 
-    private Context mContext;
+    private final Context mContext;
     private int mLandscapeResource;
     private int mPortraitResource;
 

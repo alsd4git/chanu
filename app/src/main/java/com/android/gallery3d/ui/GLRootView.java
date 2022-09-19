@@ -73,7 +73,7 @@ public class GLRootView extends GLSurfaceView implements GLSurfaceView.Renderer,
     private DisplayMetrics mDisplayMetrics;
     private int mFlags = FLAG_NEED_LAYOUT;
     private volatile boolean mRenderRequested = false;
-    private Rect mClipRect = new Rect();
+    private final Rect mClipRect = new Rect();
     private int mClipRetryCount = 0;
     private long mLastDrawFinishTime;
     private boolean mInDownState = false;

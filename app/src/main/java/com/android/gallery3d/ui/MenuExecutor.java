@@ -195,7 +195,7 @@ public class MenuExecutor {
             Activity activity = (Activity) mActivity;
             activity.startActivity(Intent.createChooser(intent, activity.getString(R.string.set_as)));
             return true;
-        }  else {
+        } else {
             return false;
         }
     }

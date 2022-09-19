@@ -43,9 +43,9 @@ public class EyePosition {
     private static final float USER_DISTANCE_METER = 0.3f;
     private final float mUserDistance; // in pixel
     private final float mLimit;
-    private Context mContext;
-    private EyePositionListener mListener;
-    private Display mDisplay;
+    private final Context mContext;
+    private final EyePositionListener mListener;
+    private final Display mDisplay;
     // The eyes' position of the user, the origin is at the center of the
     // device and the unit is in pixels.
     private float mX;
@@ -53,7 +53,7 @@ public class EyePosition {
     private float mZ;
     private long mStartTime = NOT_STARTED;
     private Sensor mSensor;
-    private PositionListener mPositionListener = new PositionListener();
+    private final PositionListener mPositionListener = new PositionListener();
     private int mGyroscopeCountdown = 0;
 
     public EyePosition(Context context, EyePositionListener listener) {

@@ -105,12 +105,12 @@ public class TileImageView extends GLView {
     private int mUploadQuota;
     private boolean mRenderComplete;
     // The following three queue is guarded by TileImageView.this
-    private TileQueue mRecycledQueue = new TileQueue();
-    private TileQueue mUploadQueue = new TileQueue();
-    private TileQueue mDecodeQueue = new TileQueue();
+    private final TileQueue mRecycledQueue = new TileQueue();
+    private final TileQueue mUploadQueue = new TileQueue();
+    private final TileQueue mDecodeQueue = new TileQueue();
     private boolean mIsTextureFreed;
     private Future<Void> mTileDecoder;
-    private ThreadPool mThreadPool;
+    private final ThreadPool mThreadPool;
     private boolean mBackgroundTileUploaded;
 
     public TileImageView(GalleryContext context) {
@@ -675,7 +675,7 @@ public class TileImageView extends GLView {
 
     private class TileDecoder implements ThreadPool.Job<Void> {
 
-        private CancelListener mNotifier = new CancelListener() {
+        private final CancelListener mNotifier = new CancelListener() {
             @Override
             public void onCancel() {
                 synchronized (TileImageView.this) {

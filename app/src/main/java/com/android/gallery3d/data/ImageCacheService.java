@@ -35,7 +35,7 @@ public class ImageCacheService {
     private static final int IMAGE_CACHE_MAX_BYTES = 200 * 1024 * 1024;
     private static final int IMAGE_CACHE_VERSION = 3;
 
-    private BlobCache mCache;
+    private final BlobCache mCache;
 
     public ImageCacheService(Context context) {
         mCache = CacheManager.getCache(context, IMAGE_CACHE_FILE, IMAGE_CACHE_MAX_ENTRIES, IMAGE_CACHE_MAX_BYTES, IMAGE_CACHE_VERSION);

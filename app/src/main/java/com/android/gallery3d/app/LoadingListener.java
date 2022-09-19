@@ -18,5 +18,6 @@ package com.android.gallery3d.app;
 
 public interface LoadingListener {
     void onLoadingStarted();
+
     void onLoadingFinished();
 }

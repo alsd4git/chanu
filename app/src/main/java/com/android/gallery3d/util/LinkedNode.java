@@ -45,7 +45,7 @@ public class LinkedNode {
 
     @SuppressWarnings("unchecked")
     public static class List<T extends LinkedNode> {
-        private LinkedNode mHead = new LinkedNode();
+        private final LinkedNode mHead = new LinkedNode();
 
         public void insertFirst(T node) {
             mHead.insert(node);

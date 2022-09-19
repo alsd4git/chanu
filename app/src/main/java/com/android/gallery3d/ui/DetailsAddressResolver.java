@@ -88,7 +88,7 @@ public class DetailsAddressResolver {
     }
 
     private class AddressLookupJob implements Job<Address> {
-        private double[] mLatlng;
+        private final double[] mLatlng;
 
         protected AddressLookupJob(double[] latlng) {
             mLatlng = latlng;

@@ -42,7 +42,7 @@ public class SlideshowView extends GLView {
     private int mPrevRotation;
     private BitmapTexture mPrevTexture;
     private SlideshowAnimation mPrevAnimation;
-    private Random mRandom = new Random();
+    private final Random mRandom = new Random();
 
     public void next(Bitmap bitmap, int rotation) {
 

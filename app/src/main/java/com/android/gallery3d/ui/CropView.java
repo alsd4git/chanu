@@ -74,20 +74,20 @@ public class CropView extends GLView {
     private float mSpotlightRatioX = 0;
     private float mSpotlightRatioY = 0;
 
-    private Handler mMainHandler;
+    private final Handler mMainHandler;
 
-    private FaceHighlightView mFaceDetectionView;
-    private HighlightRectangle mHighlightRectangle;
-    private TileImageView mImageView;
-    private AnimationController mAnimation = new AnimationController();
+    private final FaceHighlightView mFaceDetectionView;
+    private final HighlightRectangle mHighlightRectangle;
+    private final TileImageView mImageView;
+    private final AnimationController mAnimation = new AnimationController();
 
     private int mImageWidth = SIZE_UNKNOWN;
     private int mImageHeight = SIZE_UNKNOWN;
 
-    private GalleryActivity mActivity;
+    private final GalleryActivity mActivity;
 
-    private GLPaint mPaint = new GLPaint();
-    private GLPaint mFacePaint = new GLPaint();
+    private final GLPaint mPaint = new GLPaint();
+    private final GLPaint mFacePaint = new GLPaint();
 
     private int mImageRotation;
 
@@ -250,8 +250,8 @@ public class CropView extends GLView {
 
     private class FaceHighlightView extends GLView {
         private static final int INDEX_NONE = -1;
-        private ArrayList<RectF> mFaces = new ArrayList<RectF>();
-        private RectF mRect = new RectF();
+        private final ArrayList<RectF> mFaces = new ArrayList<RectF>();
+        private final RectF mRect = new RectF();
         private int mPressedFaceIndex = INDEX_NONE;
 
         public void addFace(RectF faceRect) {
@@ -451,11 +451,11 @@ public class CropView extends GLView {
     }
 
     private class HighlightRectangle extends GLView {
-        private RectF mHighlightRect = new RectF(0.25f, 0.25f, 0.75f, 0.75f);
-        private RectF mTempRect = new RectF();
-        private PointF mTempPoint = new PointF();
+        private final RectF mHighlightRect = new RectF(0.25f, 0.25f, 0.75f, 0.75f);
+        private final RectF mTempRect = new RectF();
+        private final PointF mTempPoint = new PointF();
 
-        private ResourceTexture mArrow;
+        private final ResourceTexture mArrow;
 
         private int mMovingEdges = 0;
         private float mReferenceX;

@@ -52,8 +52,8 @@ abstract class UploadedTexture extends BasicTexture {
     static float[] sCropRect = new float[4];
     // To prevent keeping allocation the borders, we store those used borders here.
     // Since the length will be power of two, it won't use too much memory.
-    private static HashMap<BorderKey, Bitmap> sBorderLines = new HashMap<BorderKey, Bitmap>();
-    private static BorderKey sBorderKey = new BorderKey();
+    private static final HashMap<BorderKey, Bitmap> sBorderLines = new HashMap<BorderKey, Bitmap>();
+    private static final BorderKey sBorderKey = new BorderKey();
     private static int sUploadedCount;
     protected Bitmap mBitmap;
     protected BitmapFactory.Options mBitmapOptions;
@@ -110,7 +110,7 @@ abstract class UploadedTexture extends BasicTexture {
                 if (mWidth == UNSPECIFIED) {
                     setSize(w, h);
                 } else if (mWidth != w || mHeight != h) {
-                    throw new IllegalStateException(String.format("cannot change size: this = %s, orig = %sx%s, new = %sx%s", toString(), mWidth, mHeight, w, h));
+                    throw new IllegalStateException(String.format("cannot change size: this = %s, orig = %sx%s, new = %sx%s", this, mWidth, mHeight, w, h));
                 }
             }
         }

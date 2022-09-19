@@ -75,7 +75,7 @@ public class DownloadCache {
 
     private long mTotalBytes = 0;
     private boolean mInitialized = false;
-    private WeakHashMap<Object, Entry> mAssociateMap = new WeakHashMap<Object, Entry>();
+    private final WeakHashMap<Object, Entry> mAssociateMap = new WeakHashMap<Object, Entry>();
 
     public DownloadCache(GalleryApp application, File root, long capacity) {
         mRoot = Utils.checkNotNull(root);
@@ -313,7 +313,7 @@ public class DownloadCache {
 
     private class DownloadTask implements Job<File>, FutureListener<File> {
         private final String mUrl;
-        private HashSet<TaskProxy> mProxySet = new HashSet<TaskProxy>();
+        private final HashSet<TaskProxy> mProxySet = new HashSet<TaskProxy>();
         private Future<File> mFuture;
 
         public DownloadTask(String url) {

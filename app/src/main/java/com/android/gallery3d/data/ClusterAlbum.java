@@ -22,8 +22,8 @@ public class ClusterAlbum extends MediaSet implements ContentListener {
     private static final String TAG = "ClusterAlbum";
     private ArrayList<Path> mPaths = new ArrayList<Path>();
     private String mName = "";
-    private DataManager mDataManager;
-    private MediaSet mClusterAlbumSet;
+    private final DataManager mDataManager;
+    private final MediaSet mClusterAlbumSet;
 
     public ClusterAlbum(Path path, DataManager dataManager, MediaSet clusterAlbumSet) {
         super(path, nextVersionNumber());

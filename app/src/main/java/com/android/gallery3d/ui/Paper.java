@@ -28,10 +28,10 @@ import com.android.gallery3d.ui.PositionRepository.Position;
 class Paper {
     private static final String TAG = "Paper";
     private static final int ROTATE_FACTOR = 4;
-    private EdgeAnimation mAnimationLeft = new EdgeAnimation();
-    private EdgeAnimation mAnimationRight = new EdgeAnimation();
+    private final EdgeAnimation mAnimationLeft = new EdgeAnimation();
+    private final EdgeAnimation mAnimationRight = new EdgeAnimation();
     private int mWidth, mHeight;
-    private float[] mMatrix = new float[16];
+    private final float[] mMatrix = new float[16];
 
     public void overScroll(float distance) {
         distance /= mWidth;  // make it relative to width

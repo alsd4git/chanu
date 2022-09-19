@@ -56,8 +56,8 @@ public class SlideshowPage extends ActivityState {
     private SlideshowView mSlideshowView;
     private Slide mPendingSlide = null;
     private boolean mIsActive = false;
-    private Intent mResultIntent = new Intent();
-    private GLView mRootPane = new GLView() {
+    private final Intent mResultIntent = new Intent();
+    private final GLView mRootPane = new GLView() {
         @Override
         protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
             mSlideshowView.layout(0, 0, right - left, bottom - top);
@@ -215,7 +215,7 @@ public class SlideshowPage extends ActivityState {
         private final MediaSet mMediaSet;
         private final Random mRandom = new Random();
         private int[] mOrder = new int[0];
-        private boolean mRepeat;
+        private final boolean mRepeat;
         private long mSourceVersion = MediaSet.INVALID_DATA_VERSION;
         private int mLastIndex = -1;
 

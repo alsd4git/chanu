@@ -26,7 +26,7 @@ public class InterruptableOutputStream extends OutputStream {
 
     private static final int MAX_WRITE_BYTES = 4096;
 
-    private OutputStream mOutputStream;
+    private final OutputStream mOutputStream;
     private volatile boolean mIsInterrupted = false;
 
     public InterruptableOutputStream(OutputStream outputStream) {

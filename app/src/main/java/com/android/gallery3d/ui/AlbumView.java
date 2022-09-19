@@ -31,7 +31,7 @@ public class AlbumView extends SlotView {
     private int mVisibleEnd = 0;
     private AlbumSlidingWindow mDataWindow;
     private SelectionDrawer mSelectionDrawer;
-    private int mCacheThumbSize;
+    private final int mCacheThumbSize;
 
     private boolean mIsActive = false;
 

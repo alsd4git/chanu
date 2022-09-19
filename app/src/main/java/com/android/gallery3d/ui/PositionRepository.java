@@ -24,10 +24,10 @@ import java.util.WeakHashMap;
 
 public class PositionRepository {
     private static final WeakHashMap<GalleryActivity, PositionRepository> sMap = new WeakHashMap<GalleryActivity, PositionRepository>();
-    private HashMap<Long, Position> mData = new HashMap<Long, Position>();
+    private final HashMap<Long, Position> mData = new HashMap<Long, Position>();
     private int mOffsetX;
     private int mOffsetY;
-    private Position mTempPosition = new Position();
+    private final Position mTempPosition = new Position();
 
     public static PositionRepository getInstance(GalleryActivity activity) {
         PositionRepository repository = sMap.get(activity);

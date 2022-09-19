@@ -385,7 +385,7 @@ public class EdgeEffect {
     }
 
     private static class Drawable extends ResourceTexture {
-        private Rect mBounds = new Rect();
+        private final Rect mBounds = new Rect();
         private int mAlpha = 255;
 
         public Drawable(Context context, int resId) {

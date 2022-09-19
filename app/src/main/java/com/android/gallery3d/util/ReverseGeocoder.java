@@ -53,10 +53,10 @@ public class ReverseGeocoder {
     private static final int GEO_CACHE_MAX_BYTES = 500 * 1024;
     private static final int GEO_CACHE_VERSION = 0;
     private static Address sCurrentAddress; // last known address
-    private Context mContext;
-    private Geocoder mGeocoder;
-    private BlobCache mGeoCache;
-    private ConnectivityManager mConnectivityManager;
+    private final Context mContext;
+    private final Geocoder mGeocoder;
+    private final BlobCache mGeoCache;
+    private final ConnectivityManager mConnectivityManager;
 
     public ReverseGeocoder(Context context) {
         mContext = context;

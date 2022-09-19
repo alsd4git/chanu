@@ -96,6 +96,6 @@ class GalleryEGLConfigChooser implements EGLConfigChooser {
             egl.eglGetConfigAttrib(display, config, ATTR_ID[j], value);
             sb.append(ATTR_NAME[j] + value[0] + " ");
         }
-        Log.i(TAG, "Config chosen: " + sb.toString());
+        Log.i(TAG, "Config chosen: " + sb);
     }
 }

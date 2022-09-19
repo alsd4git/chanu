@@ -102,9 +102,9 @@ public class BlobCache {
     private static final int BH_LENGTH = 16;
     private static final int BLOB_HEADER_SIZE = 20;
 
-    private RandomAccessFile mIndexFile;
-    private RandomAccessFile mDataFile0;
-    private RandomAccessFile mDataFile1;
+    private final RandomAccessFile mIndexFile;
+    private final RandomAccessFile mDataFile0;
+    private final RandomAccessFile mDataFile1;
     private FileChannel mIndexChannel;
     private MappedByteBuffer mIndexBuffer;
 
@@ -113,18 +113,18 @@ public class BlobCache {
     private int mActiveRegion;
     private int mActiveEntries;
     private int mActiveBytes;
-    private int mVersion;
+    private final int mVersion;
 
     private RandomAccessFile mActiveDataFile;
     private RandomAccessFile mInactiveDataFile;
     private int mActiveHashStart;
     private int mInactiveHashStart;
-    private byte[] mIndexHeader = new byte[INDEX_HEADER_SIZE];
-    private byte[] mBlobHeader = new byte[BLOB_HEADER_SIZE];
-    private Adler32 mAdler32 = new Adler32();
+    private final byte[] mIndexHeader = new byte[INDEX_HEADER_SIZE];
+    private final byte[] mBlobHeader = new byte[BLOB_HEADER_SIZE];
+    private final Adler32 mAdler32 = new Adler32();
     // This method is for one-off lookup. For repeated lookup, use the version
     // accepting LookupRequest to avoid repeated memory allocation.
-    private LookupRequest mLookupRequest = new LookupRequest();
+    private final LookupRequest mLookupRequest = new LookupRequest();
     // Tries to look up a key in the specified hash region.
     // Returns true if the lookup is successful.
     // The slot offset in the index file is saved in mSlotOffset. If the lookup

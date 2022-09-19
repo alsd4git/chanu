@@ -69,7 +69,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     // screennail (offset = +1), then the previous screennail (offset = -1) etc.
     // After all the screennail are fetched, we fetch the full images (only some
     // of them because of we don't want to use too much memory).
-    private static ImageFetch[] sImageFetchSeq;
+    private static final ImageFetch[] sImageFetchSeq;
 
     static {
         int k = 0;
@@ -117,7 +117,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
      * Besides, the [mActiveStart, mActiveEnd) range must be contained
      * within the[mContentStart, mContentEnd) range.
      */
-    private HashMap<Long, ImageEntry> mImageCache = new HashMap<Long, ImageEntry>();
+    private final HashMap<Long, ImageEntry> mImageCache = new HashMap<Long, ImageEntry>();
     private int mActiveStart = 0;
     private int mActiveEnd = 0;
     // mCurrentIndex is the "center" image the user is viewing. The change of
@@ -556,7 +556,7 @@ public class PhotoDataAdapter implements PhotoPage.Model {
     }
 
     private static class ScreenNailJob implements Job<Bitmap> {
-        private MediaItem mItem;
+        private final MediaItem mItem;
 
         public ScreenNailJob(MediaItem item) {
             mItem = item;
