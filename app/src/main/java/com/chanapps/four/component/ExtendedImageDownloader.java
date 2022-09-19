@@ -46,7 +46,7 @@ public class ExtendedImageDownloader extends BaseImageDownloader {
         } else if (PROTOCOL_DRAWABLE.equals(protocol)) {
             return getStreamFromDrawable(imageUrl);
         } else {
-            return super.getStreamFromOtherSource(imageUrl, extra);
+            return super.getStreamFromOtherSource(imageUri, extra);
         }
     }
 

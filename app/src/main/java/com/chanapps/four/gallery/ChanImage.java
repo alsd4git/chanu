@@ -592,7 +592,7 @@ public class ChanImage extends MediaItem implements ChanIdentifiedService {
             InputStream is = null;
             OutputStream os = null;
             try {
-                is = new BufferedInputStream(downloader.getStream(URI.create(thumbUrl), null));
+                is = new BufferedInputStream(downloader.getStream(thumbUrl, null));
                 os = new BufferedOutputStream(new FileOutputStream(targetFile));
                 IOUtils.copy(is, os);
             } finally {
