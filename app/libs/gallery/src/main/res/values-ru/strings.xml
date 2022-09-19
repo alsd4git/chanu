@@ -127,10 +127,7 @@
     <string name="auto" msgid="4296941368722892821">"Авто"</string>
     <string name="flash_on" msgid="7891556231891837284">"Со вспышкой"</string>
     <string name="flash_off" msgid="1445443413822680010">"Без вспышки"</string>
-    <plurals name="make_albums_available_offline">
-        <item msgid="2171596356101611086" quantity="one">"Загрузка альбома для офлайн-доступа"</item>
-        <item msgid="4948604338155959389" quantity="other">"Загрузка альбомов для офлайн-доступа."</item>
-    </plurals>
+
     <string name="try_to_set_local_album_available_offline" msgid="2184754031896160755">"Это содержание хранится на устройстве и доступно в автономном режиме."</string>
     <string name="set_label_all_albums" msgid="4581863582996336783">"Все альбомы"</string>
     <string name="set_label_local_albums" msgid="6698133661656266702">"Офлайн-альбомы"</string>

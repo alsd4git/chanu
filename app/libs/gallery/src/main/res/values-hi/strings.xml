@@ -127,10 +127,6 @@
     <string name="auto" msgid="4296941368722892821">"स्वत:"</string>
     <string name="flash_on" msgid="7891556231891837284">"फ़्लैश चलाया गया"</string>
     <string name="flash_off" msgid="1445443413822680010">"कोई फ़्लैश नहीं"</string>
-    <plurals name="make_albums_available_offline">
-        <item msgid="2171596356101611086" quantity="one">"एल्‍बम ऑफ़लाइन उपलब्‍ध कराना."</item>
-        <item msgid="4948604338155959389" quantity="other">"एल्‍बम ऑफ़लाइन उपलब्‍ध कराना."</item>
-    </plurals>
     <string name="try_to_set_local_album_available_offline" msgid="2184754031896160755">"यह आइटम स्‍थानीय रूप से संग्रहीत है और ऑफ़लाइन उपलब्‍ध है."</string>
     <string name="set_label_all_albums" msgid="4581863582996336783">"सभी एल्बम"</string>
     <string name="set_label_local_albums" msgid="6698133661656266702">"स्थानीय एल्बम"</string>
