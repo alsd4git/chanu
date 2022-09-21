@@ -26,6 +26,10 @@
             android:logo="@drawable/app_icon_actionbar"
             android:theme="@style/AppTheme">
 
+        <uses-library
+                android:name="org.apache.http.legacy"
+                android:required="false" />
+
         <provider
                 android:name="androidx.core.content.FileProvider"
                 android:authorities="${applicationId}.provider"
@@ -39,8 +43,8 @@
         <activity
                 android:name="com.chanapps.four.activity.StartupActivity"
                 android:configChanges="orientation|keyboardHidden"
-                android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-                android:exported="true">
+                android:exported="true"
+                android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -107,6 +111,7 @@
         <activity
                 android:name="com.chanapps.four.activity.GalleryViewActivity"
                 android:configChanges="orientation|screenSize"
+                android:exported="false"
                 android:label="@string/board_thread_gallery_menu"
                 android:launchMode="standard">
             <intent-filter>
@@ -122,6 +127,7 @@
         <activity
                 android:name="com.chanapps.four.activity.BoardSelectorActivity"
                 android:configChanges="orientation|screenSize"
+                android:exported="false"
                 android:label="@string/app_name"
                 android:launchMode="singleTask">
             <intent-filter>
@@ -136,6 +142,7 @@
         <activity
                 android:name="com.chanapps.four.activity.BoardActivity"
                 android:configChanges="orientation|screenSize"
+                android:exported="false"
                 android:label="@string/app_name"
                 android:launchMode="singleTask">
             <intent-filter>
@@ -151,6 +158,7 @@
 
         <activity
                 android:name="com.chanapps.four.activity.ThreadActivity"
+                android:exported="false"
                 android:label="@string/app_name"
                 android:launchMode="singleTask">
             <intent-filter>
@@ -164,6 +172,7 @@
 
         <activity
                 android:name="com.chanapps.four.activity.SearchActivity"
+                android:exported="false"
                 android:label="@string/search_title"
                 android:launchMode="singleTop">
             <intent-filter>
@@ -176,6 +185,7 @@
 
         <activity
                 android:name="com.chanapps.four.activity.SettingsActivity"
+                android:exported="false"
                 android:label="@string/settings_menu"
                 android:launchMode="standard">
             <intent-filter>
@@ -186,6 +196,7 @@
 
         <activity
                 android:name="com.chanapps.four.activity.AboutActivity"
+                android:exported="false"
                 android:label="@string/about_activity"
                 android:launchMode="standard">
             <intent-filter>
@@ -197,6 +208,7 @@
         <activity
                 android:name="com.chanapps.four.activity.CancelDownloadActivity"
                 android:excludeFromRecents="true"
+                android:exported="false"
                 android:label=""
                 android:launchMode="standard"
                 android:theme="@android:style/Theme.Holo.Dialog">
@@ -218,6 +230,7 @@
         <activity
                 android:name="com.chanapps.four.widget.WidgetConfigureActivity"
                 android:excludeFromRecents="true"
+                android:exported="false"
                 android:label="@string/widget_configure_title"
                 android:launchMode="standard"
                 android:taskAffinity="">
@@ -228,6 +241,7 @@
         <activity
                 android:name="com.chanapps.four.widget.WidgetConfigureOneImageActivity"
                 android:excludeFromRecents="true"
+                android:exported="false"
                 android:label="@string/widget_configure_title"
                 android:launchMode="standard"
                 android:taskAffinity="">
@@ -238,6 +252,7 @@
         <activity
                 android:name="com.chanapps.four.widget.WidgetConfigureCoverFlowActivity"
                 android:excludeFromRecents="true"
+                android:exported="false"
                 android:label="@string/widget_configure_title"
                 android:launchMode="standard"
                 android:taskAffinity="">
@@ -248,6 +263,7 @@
         <activity
                 android:name="com.chanapps.four.widget.WidgetConfigureCoverFlowCardActivity"
                 android:excludeFromRecents="true"
+                android:exported="false"
                 android:label="@string/widget_configure_title"
                 android:launchMode="standard"
                 android:taskAffinity="">
@@ -256,7 +272,9 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.chanapps.four.widget.BoardWidgetProvider">
+        <receiver
+                android:name="com.chanapps.four.widget.BoardWidgetProvider"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
@@ -267,7 +285,9 @@
                     android:name="android.appwidget.provider"
                     android:resource="@xml/widget_board_info" />
         </receiver>
-        <receiver android:name="com.chanapps.four.widget.BoardOneImageWidgetProvider">
+        <receiver
+                android:name="com.chanapps.four.widget.BoardOneImageWidgetProvider"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
@@ -278,7 +298,9 @@
                     android:name="android.appwidget.provider"
                     android:resource="@xml/widget_board_oneimage_info" />
         </receiver>
-        <receiver android:name="com.chanapps.four.widget.BoardCoverFlowWidgetProvider">
+        <receiver
+                android:name="com.chanapps.four.widget.BoardCoverFlowWidgetProvider"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
@@ -289,7 +311,9 @@
                     android:name="android.appwidget.provider"
                     android:resource="@xml/widget_board_coverflow_info" />
         </receiver>
-        <receiver android:name="com.chanapps.four.widget.BoardCoverFlowCardWidgetProvider">
+        <receiver
+                android:name="com.chanapps.four.widget.BoardCoverFlowCardWidgetProvider"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.appwidget.action.APPWIDGET_ENABLED" />
@@ -300,7 +324,9 @@
                     android:name="android.appwidget.provider"
                     android:resource="@xml/widget_board_coverflowcard_info" />
         </receiver>
-        <receiver android:name="com.chanapps.four.component.GlobalAlarmReceiver">
+        <receiver
+                android:name="com.chanapps.four.component.GlobalAlarmReceiver"
+                android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="com.chanapps.four.component.GlobalAlarmReceiver.update" />

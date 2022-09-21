@@ -8,11 +8,13 @@ android {
         applicationId "com.chanapps.four.activity"
         minSdkVersion 16
         targetSdkVersion 30
+        //before targeting 31+ we need to set flag mutable/immutable to every PengingIntent
+
 
         versionCode 100
         versionName "2.0.30"
         multiDexEnabled true
-        archivesBaseName = "$applicationId-$versionName"+"-"+getDate()
+        archivesBaseName = "$applicationId-$versionName" + "-" + getDate()
 
         //used to get build date info
         buildConfigField "long", "TIMESTAMP", System.currentTimeMillis() + "L"
