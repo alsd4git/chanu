@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 34
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.chanapps.four.activity"
         minSdkVersion 16
+        //noinspection ExpiringTargetSdkVersion
         targetSdkVersion 30
-        //before targeting 31+ we need to set flag mutable/immutable to every PengingIntent
+        //before targeting 31+ we need to set flag mutable/immutable to every PendingIntent
 
 
         versionCode 100
@@ -32,6 +33,9 @@ android {
             versionNameSuffix '-DEBUG'
         }
 
+    }
+    buildFeatures {
+        buildConfig true
     }
     packagingOptions {
         resources {

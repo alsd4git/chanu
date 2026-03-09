@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 34
+    namespace 'com.chanapps.four.gallery3d'
 
     defaultConfig {
         minSdkVersion 15
