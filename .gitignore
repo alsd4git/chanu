@@ -4,6 +4,9 @@
 *.ap_
 *.aab
 
+#java memory profile
+*.hprof
+
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -45,4 +48,9 @@ google-services.json
 ehthumbs.db
 Thumbs.db
 
-app/release/*
+### alsd - more ###
+app/release/
+*-keystore.properties
+*.jks
+
+# uploading gradle wrapper is a good pratice, it lead to same build on other platforms the source is copied to
