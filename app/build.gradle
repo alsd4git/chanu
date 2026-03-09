@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.chanapps.four.activity"
-        minSdkVersion 16
+        minSdkVersion 21
         //noinspection ExpiringTargetSdkVersion
         targetSdkVersion 30
         //before targeting 31+ we need to set flag mutable/immutable to every PendingIntent
@@ -65,14 +65,14 @@ repositories {
 dependencies {
     api project(':gallery')
     api project(':actionBarPullToRefresh')
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.4'
-    implementation 'commons-io:commons-io:2.6'
-    implementation 'org.apache.commons:commons-lang3:3.3.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.21.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.21.1'
+    implementation 'commons-io:commons-io:2.21.0'
+    implementation 'org.apache.commons:commons-lang3:3.20.0'
     implementation 'com.nineoldandroids:library:2.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.8.4'
 
     // debugImplementation because LeakCanary should only run in debug builds.
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
 }
