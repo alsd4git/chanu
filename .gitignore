@@ -50,7 +50,7 @@ Thumbs.db
 
 ### alsd - more ###
 app/release/
-*-keystore.properties
+*keystore.properties
 *.jks
 
 # uploading gradle wrapper is a good pratice, it lead to same build on other platforms the source is copied to
